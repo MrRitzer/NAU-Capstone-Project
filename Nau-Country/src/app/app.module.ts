@@ -10,7 +10,7 @@ import { CallbackComponent } from './callback/callback.component';
   declarations: [
     AppComponent,
     InputFormComponent,
-    CallbackComponent
+    CallbackComponent,
   ],
   imports: [
     BrowserModule,

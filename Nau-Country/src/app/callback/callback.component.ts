@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
+import { Globals } from '../common/globals';
 
 @Component({
   selector: 'app-callback',
@@ -9,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
 export class CallbackComponent implements OnInit {
   public code : string = "";
   public state : string = "";
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document, private location: Location) { }
 
   ngOnInit(): void {
     //run this first :)
@@ -26,6 +27,17 @@ export class CallbackComponent implements OnInit {
       });
       this.code = tCode;
       this.state = tState;
+      
+      if (this.state != Globals.State)
+      {
+        //request was corrupted somehow. 
+        //Do something
+      }
+      else
+      {
+        localStorage.setItem("code", this.code);
+        this.location.replaceState('/');
+      }
     }
     catch (e)
     {

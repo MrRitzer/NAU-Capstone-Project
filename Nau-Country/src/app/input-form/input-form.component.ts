@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-form.component.css']
 })
 export class InputFormComponent implements OnInit {
-
+  temp : String = "";
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Globals } from './common/globals';
 
 @Component({
   selector: 'app-root',
