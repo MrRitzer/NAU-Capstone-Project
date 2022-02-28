@@ -1,4 +1,43 @@
-<p>input-form-contact works!</p>
-
-<h1>Contact control component</h1>
-
+<div id="main-box">
+    <h4>List of Contacts</h4>
+    <div id="upper-content">
+        <select class="form-select" name="contacts" id="contacts" multiple size="6">
+        <option value="david@gmail.com">David, david@gmail.com</option>
+        <option value="bob@gmail.com">Bob, bob@gmail.com</option>
+        <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>
+        <option value="noah@gmail.com">Noah, noah@gmail.com</option>
+        <option value="danny@gmail.com">Danny, danny@gmail.com</option>
+      </select>
+        <div id="add-contact-box">
+            <form style="display:table">
+                <p style="display:table-row">
+                    <label style="display:table-cell; padding-right:5px">Name:</label>
+                    <input style="display:table-cell " type="text " name="name ">
+                </p>
+                <br>
+                <p style="display:table-row ">
+                    <label style="display:table-cell; padding-right:5px ">Email:</label>
+                    <input style="display:table-cell " type="text " name="email ">
+                </p>
+            </form>
+            <br>
+            <button id="add-button" type="button" class="btn btn-primary" name="add-contact">
+              Add Contact
+            </button>
+        </div>
+    </div>
+    <div style="margin-bottom:50px"></div>
+    <div id="lower-content">
+        <span>
+        <button type="button" class="btn btn-primary" name="update-contact">
+          Update Contact
+        </button>
+      </span>
+        <span>
+        <button type="button" class="btn btn-primary" name="delete-contact">
+          Delete Contact
+        </button>
+      </span>
+    </div>
+    <div style="margin-bottom:20px"></div>
+</div>
