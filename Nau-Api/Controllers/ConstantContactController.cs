@@ -11,8 +11,8 @@ using Newtonsoft.Json;
 
 namespace Nau_Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class ConstantContactController : Controller
     {
         private readonly ILogger<ConstantContactController> _logger;
@@ -26,7 +26,7 @@ namespace Nau_Api.Controllers
 
         [HttpGet] //Get all contacts that match the given search parameters
         [Route("getmany/{_lists}/{limit:int}")]
-        public List<Contact> GetMany([FromRoute] string _lists, [FromRoute] int limit)
+        public async Task<ActionResult<List<Contact>>> GetMany([FromRoute] string _lists, [FromRoute] int limit)
         {
             string[] lists = _lists.Split("+");
             //Construct the request string with parameters

@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:4137",
+      "applicationUrl": "http://localhost:5000",
       "sslPort": 0
     }
   },
@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "api/ConstantContact/getmany/test1/23",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
