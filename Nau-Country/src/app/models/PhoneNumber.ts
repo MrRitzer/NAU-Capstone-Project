@@ -1,4 +1,4 @@
-interface PhoneNumber {
+export class PhoneNumber {
     phone_number_id : string;
     phone_number : string;
     kind : string;

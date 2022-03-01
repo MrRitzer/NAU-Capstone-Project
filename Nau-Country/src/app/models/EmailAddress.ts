@@ -1,4 +1,4 @@
-interface EmailAddress {
+export class EmailAddress {
     address : string;
     permission_to_send : string;
     created_at : Date;

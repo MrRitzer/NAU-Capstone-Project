@@ -1,4 +1,4 @@
-interface StreetAddress {
+export class StreetAddress {
     street_address_id : string;
     kind : string;
     street : string;

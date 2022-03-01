@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT, Location } from '@angular/common';
 import { Globals } from '../common/globals';
+import { CCService } from '../cc.service';
 
 @Component({
   selector: 'app-callback',
@@ -10,7 +11,8 @@ import { Globals } from '../common/globals';
 export class CallbackComponent implements OnInit {
   public code : string = "";
   public state : string = "";
-  constructor(@Inject(DOCUMENT) private document: Document, private location: Location) { }
+  constructor(@Inject(DOCUMENT) private document: Document, private location: Location,
+    private ccService : CCService) { }
 
   ngOnInit(): void {
     //run this first :)
@@ -35,8 +37,8 @@ export class CallbackComponent implements OnInit {
       }
       else
       {
-        localStorage.setItem("code", this.code);
-        this.location.replaceState('/');
+        alert("in");
+        this.ccService.setAuthorization(this.code);
       }
     }
     catch (e)

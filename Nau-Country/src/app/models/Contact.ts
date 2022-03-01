@@ -1,4 +1,10 @@
-interface ContactResource {
+import { EmailAddress } from "./EmailAddress";
+import { CustomField } from "./CustomField";
+import { PhoneNumber } from "./PhoneNumber";
+import { StreetAddress } from "./StreetAddress";
+import { Note } from "./Note";
+
+export class Contact {
     contact_id : string;
     email_address : EmailAddress;
     first_name : string;
