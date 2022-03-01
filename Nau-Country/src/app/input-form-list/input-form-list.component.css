@@ -1,0 +1,34 @@
+#main-box {
+    width: auto;
+    border: 2px solid black;
+    position: relative;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#main-content {
+    display: flex;
+}
+
+#lower-content {
+    display: flex;
+}
+
+#list-buttons-box {
+    padding: 10px;
+    margin-left: 10px;
+    width: 300px;
+}
+
+#list-button {
+    margin: 5px;
+    font-size: 13px;
+}
+
+#contacts {
+    width: auto;
+}
+
+#contact-lists {
+    width: 400px;
+}
