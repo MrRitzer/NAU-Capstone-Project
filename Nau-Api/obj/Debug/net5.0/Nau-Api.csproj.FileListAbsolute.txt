@@ -12,7 +12,6 @@ D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Newtonsoft.Json.
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.AssemblyReference.cache
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.GeneratedMSBuildEditorConfig.editorconfig
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.AssemblyInfoInputs.cache
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.AssemblyInfo.cs
