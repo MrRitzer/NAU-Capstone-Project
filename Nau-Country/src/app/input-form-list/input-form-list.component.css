@@ -12,6 +12,11 @@
 
 #lower-content {
     display: flex;
+    align-items: baseline;
+}
+
+#results-list {
+    margin-left: 50px;
 }
 
 #list-buttons-box {
@@ -30,5 +35,5 @@
 }
 
 #contact-lists {
-    width: 400px;
+    width: auto;
 }
