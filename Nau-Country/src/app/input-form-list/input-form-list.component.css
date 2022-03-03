@@ -8,6 +8,7 @@
 
 #main-content {
     display: flex;
+    align-items: flex-end;
 }
 
 #lower-content {
