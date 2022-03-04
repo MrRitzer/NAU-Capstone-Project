@@ -1,50 +1,45 @@
-<div id="main-box">
-    <h4>List of Contact Lists</h4>
-    <div id="main-content">
+<div id="main-content">
+    <div id="lists">
         <div id="contact-lists">
-            <select class="form-select" name="contact-lists" id="contact-lists" multiple size="4">
-            <option value="master_list">Master List</option>
-            <option value="corn_farmers">Corn Farmers</option>
-            <option value="dairy_farmers">Dairy Farmers</option>
-            <option value="tractor_farmers">Farmers with a Tractor</option>
-            <option value="dog_farmers">Farmers with two dogs</option>
-          </select>
+            <label for="contact-list">
+                  <strong>List of Contact Lists</strong>
+                </label>
+            <select class="form-select" name="contact-lists" id="contact-lists" multiple size="6">
+                <option value="master_list">Master List</option>
+                <option value="corn_farmers">Corn Farmers</option>
+                <option value="dairy_farmers">Dairy Farmers</option>
+                <option value="tractor_farmers">Farmers with a Tractor</option>
+                <option value="dog_farmers">Farmers with two dogs</option>
+            </select>
+            <div id="buttons">
+                <button id="list-button" type="button" class="btn btn-primary" name="edit-list">
+                    Edit Contact List
+                  </button>
+                <button id="list-button" type="button" class="btn btn-primary" name="delete-list">
+                    Delete Contact List
+                  </button>
+                <br>
+                <div id="new-list-box">
+                    <form style="display:table">
+                        <p style="display:table-row">
+                            <input type="text" name="new_list_name" placeholder="New List Name">
+                        </p>
+                    </form>
+                </div>
+                <button id="list-button" type="button" class="btn btn-primary" name="create-new-list">
+                      Create New List
+                    </button>
+            </div>
         </div>
         <div id="results-list">
             <label for="results-list">(Get List Name)</label>
-            <select class="form-select" name="contacts-from-list" id="results-lists" multiple size="4">
-              <option value="david@gmail.com">David, david@gmail.com</option>
-              <option value="bob@gmail.com">Bob, bob@gmail.com</option>
-              <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>
-              <option value="noah@gmail.com">Noah, noah@gmail.com</option>
-              <option value="danny@gmail.com">Danny, danny@gmail.com</option>
-          </select>
+            <select class="form-select" name="contacts-from-list" id="results-lists" multiple size="15">
+                <option value="david@gmail.com">David, david@gmail.com</option>
+                <option value="bob@gmail.com">Bob, bob@gmail.com</option>
+                <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>
+                <option value="noah@gmail.com">Noah, noah@gmail.com</option>
+                <option value="danny@gmail.com">Danny, danny@gmail.com</option>
+            </select>
         </div>
     </div>
-    <div style="margin-bottom:50px"></div>
-    <div id="lower-content">
-        <span>
-        <div id="new-list-box">
-          <form style="display:table">
-              <p style="display:table-row">
-                  <input type="text" name="new_list_name" placeholder="New List Name">
-              </p>
-          </form>
-      </div>
-      </span>
-        <button id="list-button" type="button" class="btn btn-primary" name="create-new-list">
-        Create New List
-      </button>
-        <span>
-        <button id="list-button" type="button" class="btn btn-primary" name="edit-list">
-            Edit Contact List
-        </button>
-      </span>
-        <span>
-        <button id="list-button" type="button" class="btn btn-primary" name="delete-list">
-            Delete Contact List
-        </button>
-      </span>
-    </div>
-    <div style="margin-bottom:20px"></div>
 </div>
