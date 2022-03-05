@@ -95,6 +95,13 @@ export class InputFormListComponent implements OnInit {
     //this.reload();
 
   }
+  onEditClick(){
+    //open edit modal on SelectedList
+  }
+
+  onDeleteClick(){
+    //open edit modal on SelectedList
+  }
   /*
   private reload() {
     setTimeout(() => this._reload = false);
