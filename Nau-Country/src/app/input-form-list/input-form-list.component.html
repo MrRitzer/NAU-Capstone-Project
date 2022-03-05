@@ -1,16 +1,14 @@
-<div id="main-content">
+<div id="main-content" >
     <div id="lists">
         <div id="contact-lists">
             <label for="contact-list">
-                  <strong>List of Contact Lists</strong>
+                  <strong>List of Contact Lists </strong>
                 </label>
-            <select class="form-select" name="contact-lists" id="contact-lists" multiple size="6">
-                <option value="master_list">Master List</option>
-                <option value="corn_farmers">Corn Farmers</option>
-                <option value="dairy_farmers">Dairy Farmers</option>
-                <option value="tractor_farmers">Farmers with a Tractor</option>
-                <option value="dog_farmers">Farmers with two dogs</option>
+
+            <select  class="form-select" name="contact-lists" id="contact-lists" multiple size="6">
+                <option  *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}</option>
             </select>
+
             <div id="buttons">
                 <button id="list-button" type="button" class="btn btn-primary" name="edit-list">
                     Edit Contact List
@@ -34,12 +32,15 @@
         <div id="results-list">
             <label for="results-list">(Get List Name)</label>
             <select class="form-select" name="contacts-from-list" id="results-lists" multiple size="15">
-                <option value="david@gmail.com">David, david@gmail.com</option>
+              <option  *ngFor="let c of selectedList.contacts; let i = index" value="{{i}}" (click)="onContactSelect(i)">{{c.first_name}}, {{c.email_address.address}}</option>
+                <!-- <option value="david@gmail.com">David, david@gmail.com</option>
                 <option value="bob@gmail.com">Bob, bob@gmail.com</option>
                 <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>
                 <option value="noah@gmail.com">Noah, noah@gmail.com</option>
-                <option value="danny@gmail.com">Danny, danny@gmail.com</option>
+                <option value="danny@gmail.com">Danny, danny@gmail.com</option> -->
             </select>
+            <h6>Selected Contact:</h6>
+            <p *ngIf="isContactSelected">{{selectedContact.email_address.address}}</p>
         </div>
     </div>
 </div>
