@@ -34,12 +34,16 @@ export class CallbackComponent implements OnInit {
       {
         //request was corrupted somehow. 
         //Do something
+        alert('State not valid, OAuth request corrupted');
       }
       else
       {
         alert("in");
-        this.ccService.setAuthorization(this.code);
+        this.ccService.setAuthorization(this.code)
+          .subscribe(response => alert(response));
       }
+
+      this.location.replaceState("/");
     }
     catch (e)
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Nau_Api.Models
 {
-    public class GetAuthorizationResponse
+    public class AuthorizationResponse
     {
         public string token_type { get; set; }
         public int expires_in { get; set; }
