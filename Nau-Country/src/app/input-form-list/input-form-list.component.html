@@ -1,37 +1,46 @@
-<div id="main-box">
-    <h4>List of Contact Lists</h4>
-    <div id="main-content">
-        <div id="lists">
-            <select class="form-select" name="contacts" id="contacts">
-                <option value="corn-farmers">Corn Farmers</option>
-                <option value="dairy-farmers">Dairy Farmers</option>
-                <option value="dog-farmers">Farmers With A Dog</option>
-              </select>
-        </div>
-        <div id="list-buttons-box">
+<div id="main-content" >
+    <div id="lists">
+        <div id="contact-lists">
+            <label for="contact-list">
+                  <strong>List of Contact Lists </strong>
+                </label>
 
+            <select  class="form-select" name="contact-lists" id="contact-lists" multiple size="6">
+                <option  *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}</option>
+            </select>
+
+            <div id="buttons">
+                <button id="list-button" type="button" class="btn btn-primary" name="edit-list" (click)="onEditClick()">
+                    Edit Contact List
+                  </button>
+                <button id="list-button" type="button" class="btn btn-primary" name="delete-list" (click)="onDeleteClick()">
+                    Delete Contact List
+                  </button>
+                <br>
+                <div id="new-list-box">
+                    <form style="display:table">
+                        <p style="display:table-row">
+                            <input type="text" name="new_list_name" placeholder="New List Name">
+                        </p>
+                    </form>
+                </div>
+                <button id="list-button" type="button" class="btn btn-primary" name="create-new-list">
+                      Create New List
+                    </button>
+            </div>
+        </div>
+        <div id="results-list">
+            <label for="results-list">{{selectedList.name}}</label>
+            <select class="form-select" name="contacts-from-list" id="results-lists" multiple size="15">
+              <option  *ngFor="let c of selectedList.contacts; let i = index" value="{{i}}" (click)="onContactSelect(i)">{{c.first_name}}, {{c.email_address.address}}</option>
+                <!-- <option value="david@gmail.com">David, david@gmail.com</option>
+                <option value="bob@gmail.com">Bob, bob@gmail.com</option>
+                <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>
+                <option value="noah@gmail.com">Noah, noah@gmail.com</option>
+                <option value="danny@gmail.com">Danny, danny@gmail.com</option> -->
+            </select>
+            <h6>Selected Contact:</h6>
+            <p *ngIf="isContactSelected">{{selectedContact.email_address.address}}</p>
         </div>
     </div>
-    <div style="margin-bottom:50px"></div>
-    <div id="lower-content">
-        <span>
-        <button id="list-button" type="button" class="btn btn-primary" name="create-new-list">
-        View List Contents
-        </button>
-      </span>
-        <button id="list-button" type="button" class="btn btn-primary" name="create-new-list">
-        Create New List
-      </button>
-        <span>
-        <button id="list-button" type="button" class="btn btn-primary" name="update-list">
-            Update Contact List
-        </button>
-      </span>
-        <span>
-        <button id="list-button" type="button" class="btn btn-primary" name="delete-list">
-            Delete Contact List
-        </button>
-      </span>
-    </div>
-    <div style="margin-bottom:20px"></div>
 </div>

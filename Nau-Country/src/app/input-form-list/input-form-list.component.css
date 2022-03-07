@@ -1,4 +1,7 @@
-#main-box {
+#main-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: auto;
     border: 2px solid black;
     position: relative;
@@ -6,29 +9,37 @@
     padding: 20px;
 }
 
-#main-content {
+#lists {
     display: flex;
+    align-items: stretch;
+    order: 1;
 }
 
-#lower-content {
-    display: flex;
+#contact-lists {
+    width: auto;
 }
 
-#list-buttons-box {
-    padding: 10px;
-    margin-left: 10px;
-    width: 300px;
+#buttons {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
 }
 
 #list-button {
     margin: 5px;
     font-size: 13px;
+    width: 80%;
 }
 
-#contacts {
+#new-list-box {
+    width: 100%;
+    margin-left: 5px;
+}
+
+#results-list {
     width: auto;
-}
-
-#contact-lists {
-    width: 400px;
+    flex-grow: 2;
+    margin-left: 50px;
 }
