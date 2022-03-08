@@ -30,9 +30,9 @@
             </div>
         </div>
         <div id="results-list">
-            <label for="results-list">{{selectedList.name}}</label>
+            <label for="results-list">{{selectedListName}}</label>
             <select class="form-select" name="contacts-from-list" id="results-lists" multiple size="15">
-              <option  *ngFor="let c of selectedList.contacts; let i = index" value="{{i}}" (click)="onContactSelect(i)">{{c.first_name}}, {{c.email_address.address}}</option>
+              <option  *ngFor="let c of selectedList; let i = index" value="{{i}}" (click)="onContactSelect(i)">{{c.first_name}}, {{c.email_address.address}}</option>
                 <!-- <option value="david@gmail.com">David, david@gmail.com</option>
                 <option value="bob@gmail.com">Bob, bob@gmail.com</option>
                 <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>

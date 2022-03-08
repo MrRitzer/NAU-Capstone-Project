@@ -8,7 +8,7 @@ import { GetManyResponse } from './models/GetManyResponse';
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/";
+  baseUrl : string = "http://192.168.112.1:5000/api/ConstantContact/";
   constructor(private http: HttpClient) { }
 
   setAuthorization(code : string) {
@@ -16,7 +16,7 @@ export class CCService {
     let url : string = this.baseUrl + "authorize";
     const body = new HttpParams()
       .set('_code', code);
-    return this.http.post(url, 
+    return this.http.post(url,
       body.toString(),
       {
         headers: new HttpHeaders()
