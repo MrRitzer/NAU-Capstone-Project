@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Contact } from '../models/Contact';
 import { ContactList } from '../models/ContactList';
 import { EmailAddress } from '../models/EmailAddress';
@@ -14,7 +15,8 @@ import { NgModule } from '@angular/core';
 })
 export class InputFormListComponent implements OnInit {
 
-  constructor() { }
+  closeResult: string = '';
+  constructor(private modalService: NgbModal) {}
 
   selectedList : ContactList;
   selectedContact : Contact;
@@ -95,6 +97,25 @@ export class InputFormListComponent implements OnInit {
     //this.reload();
 
   }
+
+  open(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
   onEditClick(){
     //open edit modal on SelectedList
   }
