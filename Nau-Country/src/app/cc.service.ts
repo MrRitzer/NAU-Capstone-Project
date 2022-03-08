@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { GetManyResponse } from './models/GetManyResponse';
-import { AuthorizationRequest } from './models/AuthorizationRequest';
-import { AuthorizationResponse } from './models/AuthorizationResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -25,19 +23,17 @@ export class CCService {
         .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     )
-    // .subscribe({
-    //   error: error => {
-    //       alert("Error setting authorization " + error.toString());
-    //   }
-    // });
   }
 
-  Authorize(authorization : any) {
-    alert("Response: " + authorization);
-  }
+  getManyContacts(lists : Array<string>, limit : number) {
+    //Turn lists into single string of format "list1+list2+...+listn"
+    let urlEncoded : string = "";
+    lists.forEach((list, ii) => {
+      urlEncoded += list + "+";
+    });
+    urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("+"));
 
-  getManyContacts() {
-      let url : string = "";
-      return this.http.get<GetManyResponse>(url);
+    let url : string = this.baseUrl + "getmany/" + urlEncoded + "/" + limit;
+    return this.http.get<GetManyResponse>(url);
   }
 }

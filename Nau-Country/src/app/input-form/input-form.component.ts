@@ -16,4 +16,7 @@ export class InputFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  GetContactsTest() : void {
+   // let lists : Array<string> = { "", "" }
+  }
 }
