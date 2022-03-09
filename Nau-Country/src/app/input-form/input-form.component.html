@@ -3,13 +3,13 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
     <br>
     <br>
     <br>
     <br>
     <br>
-      <app-input-form-contact> </app-input-form-contact>
+      <!-- <app-input-form-contact> </app-input-form-contact> -->
     </div>
     <div class="col-md-6">
       <br>
@@ -18,11 +18,14 @@
       <br>
       <br>
       <app-input-form-list> </app-input-form-list>
-      
+
       <br>
       <br>
       <a class="btn btn-primary" href="https://authz.constantcontact.com/oauth2/default/v1/authorize?client_id=5254dee1-35c3-45ae-a687-c9bf8bc70d30&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fcallback&response_type=code&scope=account_read+account_update+contact_data+offline_access+campaign_data&state=testing">
         Authorize Application
       </a>
+      <button class="btn btn-primary" (click)="GetContactsTest()">Get contacts test</button>
+  </div>
+  <div class="col-md-3">
   </div>
 </div>

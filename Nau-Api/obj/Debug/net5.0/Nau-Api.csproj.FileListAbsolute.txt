@@ -29,3 +29,34 @@ D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.dll
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\ref\Nau-Api.dll
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.pdb
 D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.genruntimeconfig.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\appsettings.json
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Properties\launchSettings.json
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.exe
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.deps.json
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.runtimeconfig.json
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.runtimeconfig.dev.json
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\ref\Nau-Api.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.pdb
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.AssemblyReference.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.AssemblyInfoInputs.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.AssemblyInfo.cs
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.CoreCompileInputs.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\staticwebassets\Nau-Api.StaticWebAssets.Manifest.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\staticwebassets\Nau-Api.StaticWebAssets.xml
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\scopedcss\bundle\Nau-Api.styles.css
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.RazorTargetAssemblyInfo.cache
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.CopyComplete
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\ref\Nau-Api.dll
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.pdb
+C:\Users\mcche\Desktop\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.genruntimeconfig.cache
