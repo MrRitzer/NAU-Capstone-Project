@@ -1,11 +1,11 @@
-<div id="main-content" >
+<div id="main-content">
     <div id="lists">
         <div id="contact-lists">
             <label for="contact-list">
                   <strong>List of Contact Lists </strong>
                 </label>
 
-            <select  class="form-select" name="contact-lists" id="contact-lists" multiple size="6">
+            <select class="form-select" name="contact-lists" id="contact-lists" multiple size="6">
                 <option  *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}</option>
             </select>
 
@@ -13,26 +13,26 @@
                 <button id="list-button" type="button" class="btn btn-primary" name="edit-list" (click)="open(mymodal)">
                     Edit Contact List
                   </button>
-                <button id="list-button" type="button" class="btn btn-primary" name="delete-list" (click)="onDeleteClick()">
+                <button id="list-button" type="button" class="btn btn-primary" name="delete-list" (click)="onDeleteClick()" disabled>
                     Delete Contact List
                   </button>
                 <br>
                 <div id="new-list-box">
                     <form style="display:table">
                         <p style="display:table-row">
-                            <input type="text" name="new_list_name" placeholder="New List Name">
+                            <input type="text" name="new_list_name" placeholder="Coming Soon!!">
                         </p>
                     </form>
                 </div>
-                <button id="list-button" type="button" class="btn btn-primary" name="create-new-list">
+                <button id="list-button" type="button" class="btn btn-primary" name="create-new-list" disabled>
                       Create New List
                     </button>
             </div>
         </div>
         <div id="results-list">
-            <label for="results-list">{{selectedList.name}}</label>
+            <label for="results-list">{{selectedListName}}</label>
             <select class="form-select" name="contacts-from-list" id="results-lists" multiple size="15">
-              <option  *ngFor="let c of selectedList.contacts; let i = index" value="{{i}}" (click)="onContactSelect(i)">{{c.first_name}}, {{c.email_address.address}}</option>
+              <option  *ngFor="let c of selectedList; let i = index" value="{{i}}" (click)="onContactSelect(i)">{{c.first_name}}, {{c.email_address.address}}</option>
                 <!-- <option value="david@gmail.com">David, david@gmail.com</option>
                 <option value="bob@gmail.com">Bob, bob@gmail.com</option>
                 <option value="caleb@gmail.com">Caleb, caleb@gmail.com</option>
@@ -49,15 +49,15 @@
 
 <ng-template #mymodal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">×</span>
       </button>
     </div>
     <div class="modal-body">
-      This is example from Tutsmake.com
+        This is example from Tutsmake.com
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
     </div>
-  </ng-template>
+</ng-template>
