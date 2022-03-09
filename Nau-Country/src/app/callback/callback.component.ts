@@ -40,6 +40,7 @@ export class CallbackComponent implements OnInit {
       {
         alert("in");
         this.ccService.setAuthorization(this.code)
+          .subscribe(response => alert(response));
       }
 
       this.location.replaceState("/");

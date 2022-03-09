@@ -29,15 +29,15 @@ namespace Nau_Api.Controllers
 
         //Takes in string of list 
         [HttpGet]
-        [Route("getmany/{_lists}/{limit:int}")]
-        public async Task<IActionResult> GetMany([FromRoute] string _lists, [FromRoute] int limit)
+        [Route("getmany")]//{tLists}/{limit}")]
+        public async Task<IActionResult> GetMany([FromQuery] string tLists, [FromQuery] int limit)
         {
             if (String.IsNullOrWhiteSpace(_config.Token))
             {
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
             }
 
-            string[] listNames = _lists.Split("+");
+            string[] listNames = tLists.Split("+");
 
             //First get all lists associated with the account.
             GetListsResponse listsResponse = null;
@@ -49,6 +49,7 @@ namespace Nau_Api.Controllers
                     {
                         request.Headers.TryAddWithoutValidation("Accept", "application/json");
                         request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
+                        request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
 
                         var response = await httpClient.SendAsync(request);
                         string json = await response.Content.ReadAsStringAsync();
@@ -83,24 +84,21 @@ namespace Nau_Api.Controllers
                 {
                     using (var httpClient = new HttpClient())
                     {
-                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contacts"))
+                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contacts"
+                                + "?lists=" + string.Join(",", listIds)
+                                + "&limit=" + limit))
                         {
                             request.Headers.TryAddWithoutValidation("Accept", "application/json");
                             request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
-
-                            var contentList = new List<string>();
-                            contentList.Add("limit=" + limit);
-                            contentList.Add(string.Join("+", listIds));
-
-                            request.Content = new StringContent(string.Join("&", contentList));
-                            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/x-www-form-urlencoded");
+                            request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
 
                             var response = await httpClient.SendAsync(request);
+                            
                             string json = await response.Content.ReadAsStringAsync();
 
                             var contacts = JsonConvert.DeserializeObject<GetManyResponse>(json);
 
-                            return Ok(contacts.contacts); //return the list of contacts
+                            return Ok(contacts); //return the list of contacts
                         }
                     }
                 }
@@ -135,6 +133,7 @@ namespace Nau_Api.Controllers
                     {
                         string b64Secret = StringToB64(_config.ClientID + ":" + _config.ClientSecret);
                         request.Headers.TryAddWithoutValidation("Authorization", "Basic " + b64Secret);
+                        request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
 
                         var contentList = new List<string>();
                         contentList.Add("code=" + _code);
