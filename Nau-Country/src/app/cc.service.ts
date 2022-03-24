@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { GetManyResponse } from './models/GetManyResponse';
@@ -10,7 +10,7 @@ import { Contact } from './models/Contact';
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://192.168.112.1:5000/api/ConstantContact/";
+  baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/";
   constructor(private http: HttpClient) { }
 
   setAuthorization(code : string) {
@@ -24,11 +24,10 @@ export class CCService {
         headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
       }
-    )
+    );
   }
 
-  getManyContacts(lists : Array<string>, limit : number) : Observable<GetManyResponse>{
-    console.log("testing");
+  getManyContacts(lists : Array<string>, limit : number) : Observable<GetManyResponse> {
     let urlEncoded : string = "";
     lists.forEach((list, ii) => {
       urlEncoded += list + "%2B";
@@ -38,6 +37,10 @@ export class CCService {
     let url : string = this.baseUrl + "getmany?tLists=" + urlEncoded + "&limit=" + limit;
     let re = / /gi;
     url = url.replace(re, "%20");
+
+    // let headers= new HttpHeaders();
+    // headers.set('Content-Type', 'application/json');
+    // headers.set('Access-Control-Allow-Origin', '*');
 
     return this.http.get<GetManyResponse>(url)
   }

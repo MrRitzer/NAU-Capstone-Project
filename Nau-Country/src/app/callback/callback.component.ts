@@ -38,7 +38,7 @@ export class CallbackComponent implements OnInit {
       }
       else
       {
-        alert("in");
+        //alert("in");
         this.ccService.setAuthorization(this.code)
           .subscribe(response => alert(response));
       }

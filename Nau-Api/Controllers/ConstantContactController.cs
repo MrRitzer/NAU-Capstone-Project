@@ -96,8 +96,10 @@ namespace Nau_Api.Controllers
                             
                             string json = await response.Content.ReadAsStringAsync();
 
+                            
                             var contacts = JsonConvert.DeserializeObject<GetManyResponse>(json);
 
+                            Response.Headers.Add("Access-Control-Allow-Origin", "*");
                             return Ok(contacts); //return the list of contacts
                         }
                     }

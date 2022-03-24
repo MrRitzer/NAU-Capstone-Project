@@ -28,26 +28,14 @@ export class InputFormComponent implements OnInit {
     
     const observer = {
       next: (response : GetManyResponse) => {
-        alert("response recieved? " + response.contacts_count)
-        console.log("CALEBX - " + response.contacts_count);
         this.temp = response;
       },
       error: (e: string) => {
         console.error("Request failed with error: " + e);
-      },
-      complete: () => console.log('copmleted?')
+      }
     }
 
     this.ccService.getManyContacts(lists, 20)
       .subscribe(observer);
-
-    if (this.temp.contacts_count > 0)
-    {
-      alert(this.temp.contacts_count.toString());
-    }
-    else
-    {
-      alert("something went wrong: " + this.temp.contacts_count);
-    }
   }
 }
