@@ -6,6 +6,7 @@ import { InputFormListComponent } from '../input-form-list/input-form-list.compo
 import { Contact } from '../models/Contact';
 import { CCService } from '../cc.service';
 import { GetManyResponse } from '../models/GetManyResponse';
+import { EmailAddress } from '../models/EmailAddress';
 
 @Component({
   selector: 'app-input-form',
@@ -29,6 +30,7 @@ export class InputFormComponent implements OnInit {
     const observer = {
       next: (response : GetManyResponse) => {
         this.temp = response;
+        console.log(this.temp.contacts_count);
       },
       error: (e: string) => {
         console.error("Request failed with error: " + e);
@@ -37,5 +39,12 @@ export class InputFormComponent implements OnInit {
 
     this.ccService.getManyContacts(lists, 20)
       .subscribe(observer);
+  }
+
+  CreateContactTest() : void {
+    //create a fake contact
+    let contact : Contact = new Contact();
+    let email : EmailAddress = new EmailAddress();
+
   }
 }

@@ -20,11 +20,51 @@ namespace Nau_Api.Controllers
     {
         private readonly ILogger<ConstantContactController> _logger;
         private readonly ApiConfiguration _config;
+        private const string baseUrl = "https://api.cc.email/v3/";
 
         public ConstantContactController(ILogger<ConstantContactController> logger, ApiConfiguration config)
         {
             _logger = logger;
             _config = config;
+        }
+
+        //Gets all lists related to the CC account and returns a GetListsResponse object
+        [HttpGet]
+        [Route("getlists")]
+        public async Task<IActionResult> GetLists()
+        {
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contact_lists?include_count=true"))
+                    {
+                        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+                        request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
+                        request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
+
+                        var response = await httpClient.SendAsync(request);
+                        string json = await response.Content.ReadAsStringAsync();
+
+                        //This is an object containing all contact lists associated with the account
+                        var listsResponse = JsonConvert.DeserializeObject<GetListsResponse>(json);
+
+                        Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                        return Ok(listsResponse); //return the list of contacts
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                //calebx - I don't feel like writing error handling. I'll just log it and return sadness :)
+                _logger.LogError("GetMany::" + e.Message);
+                return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+            }
         }
 
         //Takes in string of list 
@@ -45,7 +85,7 @@ namespace Nau_Api.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contact_lists?include_count=false"))
+                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contact_lists?include_count=true"))
                     {
                         request.Headers.TryAddWithoutValidation("Accept", "application/json");
                         request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
@@ -84,7 +124,7 @@ namespace Nau_Api.Controllers
                 {
                     using (var httpClient = new HttpClient())
                     {
-                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contacts"
+                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), baseUrl + "contacts"
                                 + "?lists=" + string.Join(",", listIds)
                                 + "&limit=" + limit))
                         {
@@ -111,6 +151,64 @@ namespace Nau_Api.Controllers
             }
 
             //If we're here something went wrong so return an empty list.
+            return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        [Route("createcontact")]
+        public async Task<IActionResult> CreateContact([FromBody] Contact contact)
+        {
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            ContactPostRequest contactRequest = new ContactPostRequest(contact);
+
+            string url = baseUrl + "contacts";
+            try
+            {
+                UTF8Encoding encoder = new UTF8Encoding();
+                string contactJson = JsonConvert.SerializeObject(contactRequest);
+                byte[] bytes = encoder.GetBytes(contactJson);
+                
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "POST";
+                request.ContentType = "application/json";
+
+                if (bytes.Length > 0)
+                {
+                    request.ContentLength = bytes.Length;
+                    Stream reqStream = request.GetRequestStream();
+                    reqStream.Write(bytes, 0, bytes.Length);
+                    reqStream.Close();
+                }
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (webResponse.StatusCode == HttpStatusCode.OK)
+                    {
+                        //Return the returned contact
+                        using (var reader = new StreamReader(webResponse.GetResponseStream()))
+                        {
+                            var json = reader.ReadToEnd();
+                            Contact response = JsonConvert.DeserializeObject<Contact>(json);
+
+                            return Ok(response);
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogError("CreateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        return BadRequest(new Contact());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("CreateContact::" + e.Message);
+            }
+
             return new StatusCodeResult((int)HttpStatusCode.BadRequest);
         }
 
@@ -155,6 +253,7 @@ namespace Nau_Api.Controllers
                             _config.RefreshToken = authorization.refresh_token;
                         }
 
+                        Response.Headers.Add("Access-Control-Allow-Origin", "*");
                         return Ok(authorization.access_token);
                     }
                 }

@@ -38,10 +38,14 @@ export class CCService {
     let re = / /gi;
     url = url.replace(re, "%20");
 
-    // let headers= new HttpHeaders();
-    // headers.set('Content-Type', 'application/json');
-    // headers.set('Access-Control-Allow-Origin', '*');
+    return this.http.get<GetManyResponse>(url);
+  }
 
-    return this.http.get<GetManyResponse>(url)
+  createContact(contact : Contact) {
+    let url : string = this.baseUrl + "createcontact";
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(url, contact, { headers : headers });
   }
 }
