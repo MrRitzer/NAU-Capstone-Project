@@ -245,20 +245,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\caleb\\.nuget\\packages\\": {}
+    "C:\\Users\\mcche\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+      "projectUniqueName": "D:\\NAU Capstone\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
       "projectName": "Nau-Api",
-      "projectPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
-      "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-      "outputPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
+      "projectPath": "D:\\NAU Capstone\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+      "packagesPath": "C:\\Users\\mcche\\.nuget\\packages\\",
+      "outputPath": "D:\\NAU Capstone\\NAU-Capstone-Project\\Nau-Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\mcche\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -310,7 +317,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -5,8 +5,9 @@ export class ContactList{
   name: string;
   description: string;
   favorite: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
+  membership_count: BigInteger;
   contacts: Contact[];
 }
 

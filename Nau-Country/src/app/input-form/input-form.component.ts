@@ -7,6 +7,7 @@ import { Contact } from '../models/Contact';
 import { CCService } from '../cc.service';
 import { GetManyResponse } from '../models/GetManyResponse';
 import { EmailAddress } from '../models/EmailAddress';
+import { GetListsResponse } from '../models/GetListsResponse';
 
 @Component({
   selector: 'app-input-form',
@@ -15,6 +16,7 @@ import { EmailAddress } from '../models/EmailAddress';
 })
 export class InputFormComponent implements OnInit {
   temp : GetManyResponse;
+  templists : GetListsResponse;
   constructor(private ccService : CCService) { }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class InputFormComponent implements OnInit {
     lists.push("Testing");
 
     this.temp = new GetManyResponse();
-    
+
     const observer = {
       next: (response : GetManyResponse) => {
         this.temp = response;
@@ -38,6 +40,26 @@ export class InputFormComponent implements OnInit {
     }
 
     this.ccService.getManyContacts(lists, 20)
+      .subscribe(observer);
+  }
+  GetListsTest() : void {
+    let lists = new Array<string>();
+    lists.push("General Interest");
+    lists.push("Testing");
+
+    this.templists = new GetListsResponse();
+
+    const observer = {
+      next: (response : GetListsResponse) => {
+        this.templists = response;
+        console.log(this.templists.lists_count);
+      },
+      error: (e: string) => {
+        console.error("Request failed with error: " + e);
+      }
+    }
+
+    this.ccService.getContactLists()
       .subscribe(observer);
   }
 
