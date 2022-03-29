@@ -130,7 +130,7 @@ namespace Nau_Api.Controllers
                         {
                             request.Headers.TryAddWithoutValidation("Accept", "application/json");
                             request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
-                            request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
+                            //request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
 
                             var response = await httpClient.SendAsync(request);
                             
@@ -163,18 +163,17 @@ namespace Nau_Api.Controllers
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
             }
 
-            ContactPostRequest contactRequest = new ContactPostRequest(contact);
-
             string url = baseUrl + "contacts";
             try
             {
                 UTF8Encoding encoder = new UTF8Encoding();
-                string contactJson = JsonConvert.SerializeObject(contactRequest);
+                string contactJson = JsonConvert.SerializeObject(contact);
                 byte[] bytes = encoder.GetBytes(contactJson);
                 
                 WebRequest request = WebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
 
                 if (bytes.Length > 0)
                 {
@@ -186,27 +185,132 @@ namespace Nau_Api.Controllers
 
                 using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
                 {
-                    if (webResponse.StatusCode == HttpStatusCode.OK)
+                    if (webResponse.StatusCode == HttpStatusCode.Created)
                     {
                         //Return the returned contact
-                        using (var reader = new StreamReader(webResponse.GetResponseStream()))
-                        {
-                            var json = reader.ReadToEnd();
-                            Contact response = JsonConvert.DeserializeObject<Contact>(json);
+                        var json = ReadResponse(webResponse);
+                        Contact response = JsonConvert.DeserializeObject<Contact>(json);
 
-                            return Ok(response);
-                        }
+                        return Ok(response);
                     }
                     else
                     {
                         _logger.LogError("CreateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("CreateContact:: Response: " + json);
+
                         return BadRequest(new Contact());
                     }
                 }
             }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                string json = ReadResponse(response);
+                _logger.LogError("CreateCustomer::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogInformation("CreateCustomer::Response: " + json);
+            }
             catch (Exception e)
             {
                 _logger.LogError("CreateContact::" + e.Message);
+            }
+
+            return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+        }
+
+        [HttpPut]
+        [Route("updatecontact")]
+        public async Task<IActionResult> UpdateContact(string contactId)
+        {
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            try
+            {
+                string url = baseUrl + "contacts/" + contactId;
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "PUT";
+                request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (webResponse.StatusCode == HttpStatusCode.OK)
+                    {
+                        //Return the returned contact
+                        var json = ReadResponse(webResponse);
+                        Contact response = JsonConvert.DeserializeObject<Contact>(json);
+
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        _logger.LogError("CreateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("CreateContact:: Response: " + json);
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                string json = ReadResponse(response);
+                _logger.LogError("CreateCustomer::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogInformation("CreateCustomer::Response: " + json);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("CreateContact::" + e.Message);
+            }
+
+            return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+        }
+
+        [HttpDelete]
+        [Route("deletecontact")]
+        public async Task<IActionResult> DeleteContact([FromQuery] string contactId)
+        {
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            try
+            {
+                string url = baseUrl + "contacts/" + contactId;
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "DELETE";
+                request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (((int)webResponse.StatusCode) < 400)
+                    {
+                        return Ok("success");
+                    }
+                    else
+                    {
+                        _logger.LogError("CreateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("CreateContact:: Response: " + json);
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                if (((int)response.StatusCode) == 404)
+                {
+                    //Contact didn't exist. Unfortunately, 404 can mean a lot of things but they use it in this case to say not found. 
+                    //Calebx - I'm not sure how NAU wants to handle this, it would be nice to tell the user that the person they tried to delete didn't exist I guess. 
+                    return Ok();
+                }
+                string json = ReadResponse(response);
+                _logger.LogError("DeleteContact::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogError("DeleteContact::Response: " + json);
             }
 
             return new StatusCodeResult((int)HttpStatusCode.BadRequest);
@@ -264,6 +368,15 @@ namespace Nau_Api.Controllers
             }
 
             return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+        }
+
+        private string ReadResponse(HttpWebResponse response)
+        {
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                var json = reader.ReadToEnd();
+                return json;
+            }
         }
 
         private string StringToB64(string input)
