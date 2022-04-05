@@ -55,4 +55,10 @@ export class CCService {
 
     return this.http.post(url, contact, { headers : headers });
   }
+
+  deleteContact(id: string){
+    let url : string = this.baseUrl + "deletecontact";
+
+    return this.http.delete(url, {body: id});
+  }
 }

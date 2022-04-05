@@ -8,6 +8,7 @@ import { CCService } from '../cc.service';
 import { GetManyResponse } from '../models/GetManyResponse';
 import { EmailAddress } from '../models/EmailAddress';
 import { GetListsResponse } from '../models/GetListsResponse';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-input-form',
@@ -68,5 +69,11 @@ export class InputFormComponent implements OnInit {
     let contact : Contact = new Contact();
     let email : EmailAddress = new EmailAddress();
 
+  }
+
+  DeleteContactTest(c : Contact) : void {
+    let id : string = c.contact_id;
+    let deleteStatus : string = "";
+    this.ccService.deleteContact(id).subscribe(() => deleteStatus = 'Delete Successful');
   }
 }
