@@ -60,5 +60,13 @@ export class CCService {
     let url : string = this.baseUrl + "deletecontact";
 
     return this.http.delete(url, {body: id});
+
+  }
+
+  updateContact(contact: Contact){
+    let id = contact.contact_id;
+    let url : string = this.baseUrl + "updatecontact";
+
+    return this.http.put(url, id);
   }
 }
