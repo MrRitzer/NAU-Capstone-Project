@@ -22,7 +22,7 @@ export class CCService {
       body.toString(),
       {
         headers: new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('Content-Type', 'application/x-www-form-urlencoded') 
       }
     );
   }
@@ -41,11 +41,11 @@ export class CCService {
     return this.http.get<GetManyResponse>(url);
   }
 
-  createContact(contact : Contact) {
+  createContact(contact : Contact) : Observable<Contact> {
     let url : string = this.baseUrl + "createcontact";
     let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    headers.set('Content-Type', 'application/json');
 
-    return this.http.post(url, contact, { headers : headers });
+    return this.http.post<Contact>(url, contact, { 'headers' : headers });
   }
 }

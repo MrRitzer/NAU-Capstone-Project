@@ -33,6 +33,7 @@ namespace Nau_Api.Controllers
         [Route("getlists")]
         public async Task<IActionResult> GetLists()
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
             {
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
@@ -54,7 +55,6 @@ namespace Nau_Api.Controllers
                         //This is an object containing all contact lists associated with the account
                         var listsResponse = JsonConvert.DeserializeObject<GetListsResponse>(json);
 
-                        Response.Headers.Add("Access-Control-Allow-Origin", "*");
                         return Ok(listsResponse); //return the list of contacts
                     }
                 }
@@ -72,6 +72,7 @@ namespace Nau_Api.Controllers
         [Route("getmany")]//{tLists}/{limit}")]
         public async Task<IActionResult> GetMany([FromQuery] string tLists, [FromQuery] int limit)
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
             {
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
@@ -139,7 +140,6 @@ namespace Nau_Api.Controllers
                             
                             var contacts = JsonConvert.DeserializeObject<GetManyResponse>(json);
 
-                            Response.Headers.Add("Access-Control-Allow-Origin", "*");
                             return Ok(contacts); //return the list of contacts
                         }
                     }
@@ -158,6 +158,7 @@ namespace Nau_Api.Controllers
         [Route("createcontact")]
         public async Task<IActionResult> CreateContact([FromBody] Contact contact)
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
             {
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
@@ -222,6 +223,7 @@ namespace Nau_Api.Controllers
         [Route("updatecontact")]
         public async Task<IActionResult> UpdateContact(string contactId)
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
             {
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
@@ -272,6 +274,7 @@ namespace Nau_Api.Controllers
         [Route("deletecontact")]
         public async Task<IActionResult> DeleteContact([FromQuery] string contactId)
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
             {
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
@@ -324,6 +327,8 @@ namespace Nau_Api.Controllers
         [Route("authorize")]
         public async Task<IActionResult> Authorize([FromForm] string _code)
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
             if (String.IsNullOrWhiteSpace(_code))
             {
                 return new StatusCodeResult((int)HttpStatusCode.BadRequest);
@@ -357,7 +362,6 @@ namespace Nau_Api.Controllers
                             _config.RefreshToken = authorization.refresh_token;
                         }
 
-                        Response.Headers.Add("Access-Control-Allow-Origin", "*");
                         return Ok(authorization.access_token);
                     }
                 }

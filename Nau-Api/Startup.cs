@@ -25,12 +25,14 @@ namespace Nau_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options => options.AddPolicy("NauTestPolicy", builder =>
+            {
+                builder.WithOrigins("*")
+                       .AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddControllers();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nau_Api", Version = "v1" });
-            //});
             services.AddSingleton(Configuration.GetSection("ApiConfiguration").Get<ApiConfiguration>());
         }
 
@@ -48,9 +50,11 @@ namespace Nau_Api
 
             app.UseAuthorization();
 
+            app.UseCors("TestPolicy");
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors("NauTestPolicy");
             });
         }
     }
