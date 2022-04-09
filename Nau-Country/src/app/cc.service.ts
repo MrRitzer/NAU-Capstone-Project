@@ -3,28 +3,35 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { GetManyResponse } from './models/GetManyResponse';
+import { GetListsResponse } from './models/GetListsResponse';
 import { Links } from './models/Links';
 import { Contact } from './models/Contact';
+import { ContactList } from './models/ContactList';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/";
+  baseUrl : string = "http://96.3.55.1:45455/api/ConstantContact/";
   constructor(private http: HttpClient) { }
 
   setAuthorization(code : string) {
     let url : string = this.baseUrl + "authorize";
     const body = new HttpParams()
       .set('_code', code);
-    
-      return this.http.post(url, 
+
+      return this.http.post(url,
       body.toString(),
       {
         headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded') 
       }
     );
+  }
+
+  getContactLists(){
+    let url : string = this.baseUrl + "getlists";
+    return this.http.get<GetListsResponse>(url);
   }
 
   getManyContacts(lists : Array<string>, limit : number) : Observable<GetManyResponse> {
@@ -47,5 +54,19 @@ export class CCService {
     headers.set('Content-Type', 'application/json');
 
     return this.http.post<Contact>(url, contact, { 'headers' : headers });
+  }
+
+  deleteContact(id: string){
+    let url : string = this.baseUrl + "deletecontact";
+
+    return this.http.delete(url, {body: id});
+
+  }
+
+  updateContact(contact: Contact){
+    let id = contact.contact_id;
+    let url : string = this.baseUrl + "updatecontact";
+
+    return this.http.put(url, id);
   }
 }

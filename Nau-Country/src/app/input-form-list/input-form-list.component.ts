@@ -8,7 +8,8 @@ import { Input } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CCService } from '../cc.service'
 import { GetManyResponse } from '../models/GetManyResponse';
-
+import { GetListsResponse } from '../models/GetListsResponse';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-input-form-list',
@@ -45,12 +46,12 @@ export class InputFormListComponent implements OnInit {
   list3 : ContactList = new ContactList;
   list4 : ContactList = new ContactList;
   list5 : ContactList = new ContactList;
-
+  response : Observable<GetListsResponse>;
 
   ngOnInit(): void {
 
     //API CALL TO GRAB LIST OF CONTACT LISTS
-
+    this.response = this.ccService.getContactLists();
 
     //create the hard coded values and dummy lists
 
