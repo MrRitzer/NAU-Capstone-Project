@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //import the children to inherit
-import { InputFormContactComponent } from '../input-form-contact/input-form-contact.component';
-import { InputFormListComponent } from '../input-form-list/input-form-list.component';
+import { InputFormAddRemoveComponent } from '../input-form-add-remove/input-form-add-remove.component';
 import { Contact } from '../models/Contact';
 import { CCService } from '../cc.service';
 import { GetManyResponse } from '../models/GetManyResponse';
