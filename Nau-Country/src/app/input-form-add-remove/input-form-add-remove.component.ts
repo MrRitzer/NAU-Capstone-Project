@@ -20,7 +20,7 @@ export class InputFormAddRemoveComponent implements OnInit {
 
   closeResult: string = '';
   constructor(private modalService: NgbModal, private ccService: CCService) {}
-
+  
   selectedList : Array<Contact>;
   selectedListName : string;
   selectedContact : Contact;

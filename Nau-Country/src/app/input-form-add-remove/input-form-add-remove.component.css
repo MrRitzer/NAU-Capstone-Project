@@ -1,5 +1,27 @@
 #main-content {
     display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: auto;
+}
+
+#add-contact {
+    width: max-content;
+}
+
+#list-add {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: auto;
+    align-items: flex-end;
+}
+
+
+/* #main-content {
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: auto;
@@ -66,4 +88,4 @@
     width: auto;
     flex-grow: 2;
     margin-left: 50px;
-}
+} */
