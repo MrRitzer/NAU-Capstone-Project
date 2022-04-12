@@ -7,6 +7,7 @@ import { GetListsResponse } from './models/GetListsResponse';
 import { Links } from './models/Links';
 import { Contact } from './models/Contact';
 import { ContactList } from './models/ContactList';
+import { EmailAddress } from './models/EmailAddress';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class CCService {
       body.toString(),
       {
         headers: new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded') 
+        .set('Content-Type', 'application/x-www-form-urlencoded')
       }
     );
   }
@@ -32,6 +33,12 @@ export class CCService {
   getContactLists(){
     let url : string = this.baseUrl + "getlists";
     return this.http.get<GetListsResponse>(url);
+  }
+
+  getContact(email: string) {
+
+    let url : string = this.baseUrl + "getcontact" + "?email=" + email;
+    return this.http.get<Contact>(url);
   }
 
   getManyContacts(lists : Array<string>, limit : number) : Observable<GetManyResponse> {
@@ -57,9 +64,9 @@ export class CCService {
   }
 
   deleteContact(id: string){
-    let url : string = this.baseUrl + "deletecontact";
+    let url : string = this.baseUrl + "deletecontact" + "?contactId=" + id;
 
-    return this.http.delete(url, {body: id});
+    return this.http.delete(url);
 
   }
 
