@@ -12,4 +12,11 @@ export class InputFormAddRemoveListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onAddCLick(){
+
+  }
+  onRemoveClick(){
+    
+  }
+
 }

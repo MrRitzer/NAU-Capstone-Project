@@ -1,0 +1,27 @@
+#main-content {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: auto;
+}
+
+#add-contact {
+    padding: 15px;
+    width: auto;
+}
+
+#list-add {
+    padding: 15px;
+    width: auto;
+}
+
+#remove-contact {
+    padding: 15px;
+    width: auto;
+}
+
+#list-remove {
+    padding: 15px;
+    width: auto;
+}

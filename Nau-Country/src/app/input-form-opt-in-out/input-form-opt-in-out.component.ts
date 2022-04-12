@@ -12,4 +12,12 @@ export class InputFormOptInOutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onOptInClick(){
+    
+  }
+
+  onOptOutClick(){
+    
+  }
+
 }

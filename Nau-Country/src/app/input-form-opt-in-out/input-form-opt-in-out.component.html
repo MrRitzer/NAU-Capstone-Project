@@ -1,1 +1,44 @@
-<p>input-form-opt-in-out works!</p>
+<div id="main-content" class="row">
+    <div id="add-contact" class="col-sm-3">
+        <h5>
+            <strong>Opt In</strong>
+        </h5>
+        <br><br>
+        <p>
+            <strong>User Email</strong>
+            <br>
+            <input type="text" name="new-email">
+        </p>
+        <button type="button" class="btn btn-primary" name="add-contact" (click)="onOptInClick()">
+          Add
+        </button>
+    </div>
+    <div id="list-add" class="col-md">
+        <h5>
+            <strong>Contact Lists</strong>
+        </h5>
+        <br><br>
+        <p>(Insert List Box Here)</p>
+    </div>
+    <div id="remove-contact" class="col-sm-3">
+        <h5>
+            <strong>Opt Out</strong>
+        </h5>
+        <br><br>
+        <p>
+            <strong>User Email</strong>
+            <br>
+            <input type="text" name="new-email">
+        </p>
+        <button type="button" class="btn btn-primary" name="remove-contact" (click)="onOptOutClick()">
+          Remove
+        </button>
+    </div>
+    <div id="list-remove" class="col-md">
+        <h5>
+            <strong>Contact Lists</strong>
+        </h5>
+        <br><br>
+        <p>(Insert List Box Here)</p>
+    </div>
+</div>

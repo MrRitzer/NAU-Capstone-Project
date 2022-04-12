@@ -11,5 +11,9 @@ export class InputFormImportFileComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  onAddClick(){
+    
+  }
 
 }
