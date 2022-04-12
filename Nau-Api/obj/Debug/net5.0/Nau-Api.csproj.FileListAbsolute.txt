@@ -90,3 +90,4 @@ D:\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.dll
 D:\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\ref\Nau-Api.dll
 D:\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.pdb
 D:\NAU Capstone\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.genruntimeconfig.cache
+D:\Devlopment\NAU\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.StaticWebAssets.xml

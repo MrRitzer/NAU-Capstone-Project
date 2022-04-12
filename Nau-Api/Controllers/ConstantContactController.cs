@@ -154,6 +154,65 @@ namespace Nau_Api.Controllers
             return new StatusCodeResult((int)HttpStatusCode.BadRequest);
         }
 
+        [HttpGet]
+        [Route("getcontact")]
+        public async Task<IActionResult> GetContact([FromQuery] string email)
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            if (email.Contains("@"))
+            {
+                email.Replace(@"@", "%40");
+            }
+
+            try
+            {
+                WebRequest request = WebRequest.Create(baseUrl + "contacts?email=" + email);
+                request.Method = "GET";
+                request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (webResponse.StatusCode == HttpStatusCode.OK)
+                    {
+                        var json = ReadResponse(webResponse);
+                        var contactResponse = JsonConvert.DeserializeObject<GetManyResponse>(json);
+                        if (contactResponse.contacts.Count > 0)
+                        {
+                            return Ok(contactResponse.contacts[0]);
+                        }
+                        else { return Ok(new Contact()); }
+                    }
+                    else
+                    {
+                        _logger.LogError("GetContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("GetContact:: Response: " + json);
+
+                        return BadRequest(new Contact());
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                string json = ReadResponse(response);
+                _logger.LogError("CreateCustomer::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogInformation("CreateCustomer::Response: " + json);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("GetContact::" + e.Message);
+            }
+
+            return BadRequest(new Contact());
+        }
+
         [HttpPost]
         [Route("createcontact")]
         public async Task<IActionResult> CreateContact([FromBody] Contact contact)
@@ -216,7 +275,7 @@ namespace Nau_Api.Controllers
                 _logger.LogError("CreateContact::" + e.Message);
             }
 
-            return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+            return BadRequest(new Contact());
         }
 
         [HttpPut]
@@ -267,7 +326,7 @@ namespace Nau_Api.Controllers
                 _logger.LogError("CreateContact::" + e.Message);
             }
 
-            return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+            return BadRequest(new Contact());
         }
 
         [HttpDelete]
