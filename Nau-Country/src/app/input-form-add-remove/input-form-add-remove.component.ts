@@ -149,6 +149,14 @@ export class InputFormAddRemoveComponent implements OnInit {
     }
   }
 
+  onAddClick(){
+
+  }
+
+  onRemoveClick(){
+    
+  }
+
   onEditClick(){
     //open edit modal on SelectedList
   }

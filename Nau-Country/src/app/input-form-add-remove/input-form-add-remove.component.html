@@ -1,5 +1,5 @@
-<div id="main-content">
-    <div id="add-contact" class="sm-col-4">
+<div id="main-content" class="row">
+    <div id="add-contact" class="col-sm-3">
         <h5>
             <strong>Add Contact</strong>
         </h5>
@@ -9,18 +9,53 @@
             <br>
             <input type="text" name="new-email">
         </p>
+        <p>
+            <strong>First Name</strong>
+            <br>
+            <input type="text" name="new-fname">
+        </p>
+        <p>
+            <strong>Last Name</strong>
+            <br>
+            <input type="text" name="new-lname">
+        </p>
+        <button type="button" class="btn btn-primary" name="add-contact" (click)="onAddClick()">
+          Add
+        </button>
     </div>
-    <div id="list-add" class="sm-col-4">
-        <select class="form-select" name="contact-lists" id="contact-lists" multiple size="3">
+    <div id="list-add" class="col-md">
+        <h5>
+            <strong>Contact Lists</strong>
+        </h5>
+        <br><br>
+        <select class="form-select" name="contact-lists" id="contact-lists" multiple size="8">
         <option *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}
         </option>
       </select>
     </div>
-    <div id="remove-contact" class="sm-col-4">
-        <strong>Add Contact</strong>
+    <div id="remove-contact" class="col-sm-3">
+        <h5>
+            <strong>Remove Contact</strong>
+        </h5>
+        <br><br>
+        <p>
+            <strong>Email</strong>
+            <br>
+            <input type="text" name="new-email">
+        </p>
+        <button type="button" class="btn btn-primary" name="remove-contact" (click)="onRemoveClick()">
+          Remove
+        </button>
     </div>
-    <div id="list-contact" class="sm-col-4">
-        <strong>Add Contact</strong>
+    <div id="list-remove" class="col-md">
+        <h5>
+            <strong>Contact Lists</strong>
+        </h5>
+        <br><br>
+        <select class="form-select" name="contact-lists" id="contact-lists" multiple size="8">
+    <option *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}
+    </option>
+  </select>
     </div>
 </div>
 
