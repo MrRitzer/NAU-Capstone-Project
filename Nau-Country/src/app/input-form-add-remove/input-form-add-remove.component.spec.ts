@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputFormContactComponent } from './input-form-contact.component';
+import { InputFormAddRemoveComponent } from './input-form-add-remove.component';
 
-describe('InputFormContactComponent', () => {
-  let component: InputFormContactComponent;
-  let fixture: ComponentFixture<InputFormContactComponent>;
+describe('InputFormListComponent', () => {
+  let component: InputFormAddRemoveComponent;
+  let fixture: ComponentFixture<InputFormAddRemoveComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputFormContactComponent ]
+      declarations: [ InputFormAddRemoveComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputFormContactComponent);
+    fixture = TestBed.createComponent(InputFormAddRemoveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

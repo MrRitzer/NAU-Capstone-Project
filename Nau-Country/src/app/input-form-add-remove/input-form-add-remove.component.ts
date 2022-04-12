@@ -12,11 +12,11 @@ import { GetListsResponse } from '../models/GetListsResponse';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-input-form-list',
-  templateUrl: './input-form-list.component.html',
-  styleUrls: ['./input-form-list.component.css']
+  selector: 'app-input-form-add-remove',
+  templateUrl: './input-form-add-remove.component.html',
+  styleUrls: ['./input-form-add-remove.component.css']
 })
-export class InputFormListComponent implements OnInit {
+export class InputFormAddRemoveComponent implements OnInit {
 
   closeResult: string = '';
   constructor(private modalService: NgbModal, private ccService: CCService) {}

@@ -7,8 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { CallbackComponent } from './callback/callback.component';
-import { InputFormListComponent } from './input-form-list/input-form-list.component';
-import { InputFormContactComponent } from './input-form-contact/input-form-contact.component';
+import { InputFormAddRemoveComponent } from './input-form-add-remove/input-form-add-remove.component';
 
 
 @NgModule({
@@ -16,8 +15,7 @@ import { InputFormContactComponent } from './input-form-contact/input-form-conta
     AppComponent,
     InputFormComponent,
     CallbackComponent,
-    InputFormListComponent,
-    InputFormContactComponent,
+    InputFormAddRemoveComponent,
   ],
   imports: [
     NgbModule,
