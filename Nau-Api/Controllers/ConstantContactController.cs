@@ -153,10 +153,10 @@ namespace Nau_Api.Controllers
             //If we're here something went wrong so return an empty list.
             return new StatusCodeResult((int)HttpStatusCode.BadRequest);
         }
-//[FromQuery]
+
         [HttpGet]
         [Route("getcontact")]
-        public async Task<IActionResult> GetContact( string email)
+        public async Task<IActionResult> GetContact([FromQuery] string email)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
