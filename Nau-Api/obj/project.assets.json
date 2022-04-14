@@ -250,11 +250,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+      "projectUniqueName": "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
       "projectName": "Nau-Api",
-      "projectPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+      "projectPath": "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
       "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-      "outputPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
+      "outputPath": "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -310,7 +310,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

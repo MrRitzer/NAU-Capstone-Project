@@ -67,9 +67,138 @@ namespace Nau_Api.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("createlist")]
+        public async Task<IActionResult> CreateList([FromBody] ContactList list)
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            string url = baseUrl + "contact_lists";
+            try
+            {
+                UTF8Encoding encoder = new UTF8Encoding();
+                string listJson = JsonConvert.SerializeObject(list);
+                byte[] bytes = encoder.GetBytes(listJson);
+
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                if (bytes.Length > 0)
+                {
+                    request.ContentLength = bytes.Length;
+                    Stream reqStream = request.GetRequestStream();
+                    reqStream.Write(bytes, 0, bytes.Length);
+                    reqStream.Close();
+                }
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (webResponse.StatusCode == HttpStatusCode.Created)
+                    {
+                        //Return the returned contact
+                        var json = ReadResponse(webResponse);
+                        ContactList response = JsonConvert.DeserializeObject<ContactList>(json);
+
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        _logger.LogError("CreateList:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("CreateList:: Response: " + json);
+
+                        return BadRequest(new ContactList());
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                string json = ReadResponse(response);
+                _logger.LogError("CreateList::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogInformation("CreateList::Response: " + json);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("CreateList::" + e.Message);
+            }
+
+            return BadRequest(new ContactList());
+        }
+
+        [HttpPut]
+        [Route("updatelist")]
+        public async Task<IActionResult> UpdateList([FromBody] ContactList list)
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            try
+            {
+                string url = baseUrl + "contacts/" + list.list_id;
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "PUT";
+                request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                UTF8Encoding encoder = new UTF8Encoding();
+                string listJson = JsonConvert.SerializeObject(list);
+                byte[] bytes = encoder.GetBytes(listJson);
+
+                if (bytes.Length > 0)
+                {
+                    request.ContentLength = bytes.Length;
+                    Stream reqStream = request.GetRequestStream();
+                    reqStream.Write(bytes, 0, bytes.Length);
+                    reqStream.Close();
+                }
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (webResponse.StatusCode == HttpStatusCode.OK)
+                    {
+                        //Return the returned contact
+                        var json = ReadResponse(webResponse);
+                        Contact response = JsonConvert.DeserializeObject<Contact>(json);
+
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        _logger.LogError("UpdateList:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("UpdateList:: Response: " + json);
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                string json = ReadResponse(response);
+                _logger.LogError("UpdateList::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogInformation("UpdateList::Response: " + json);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("UpdateList::" + e.Message);
+            }
+
+            return BadRequest(new Contact());
+        }
+
         //Takes in string of list 
         [HttpGet]
-        [Route("getmany")]//{tLists}/{limit}")]
+        [Route("getmany")]
         public async Task<IActionResult> GetMany([FromQuery] string tLists, [FromQuery] int limit)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
@@ -280,7 +409,7 @@ namespace Nau_Api.Controllers
 
         [HttpPut]
         [Route("updatecontact")]
-        public async Task<IActionResult> UpdateContact(string contactId)
+        public async Task<IActionResult> UpdateContact([FromBody] Contact contact)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
@@ -290,11 +419,23 @@ namespace Nau_Api.Controllers
 
             try
             {
-                string url = baseUrl + "contacts/" + contactId;
+                string url = baseUrl + "contacts/" + contact.contact_id;
                 WebRequest request = WebRequest.Create(url);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
                 request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                UTF8Encoding encoder = new UTF8Encoding();
+                string contactJson = JsonConvert.SerializeObject(contact);
+                byte[] bytes = encoder.GetBytes(contactJson);
+
+                if (bytes.Length > 0)
+                {
+                    request.ContentLength = bytes.Length;
+                    Stream reqStream = request.GetRequestStream();
+                    reqStream.Write(bytes, 0, bytes.Length);
+                    reqStream.Close();
+                }
 
                 using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
                 {
@@ -308,9 +449,9 @@ namespace Nau_Api.Controllers
                     }
                     else
                     {
-                        _logger.LogError("CreateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        _logger.LogError("UpdateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
                         string json = ReadResponse(webResponse);
-                        _logger.LogInformation("CreateContact:: Response: " + json);
+                        _logger.LogInformation("UpdateContact:: Response: " + json);
                     }
                 }
             }
@@ -318,12 +459,12 @@ namespace Nau_Api.Controllers
             {
                 HttpWebResponse response = (HttpWebResponse)we.Response;
                 string json = ReadResponse(response);
-                _logger.LogError("CreateCustomer::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
-                _logger.LogInformation("CreateCustomer::Response: " + json);
+                _logger.LogError("UpdateContact::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogInformation("UpdateContact::Response: " + json);
             }
             catch (Exception e)
             {
-                _logger.LogError("CreateContact::" + e.Message);
+                _logger.LogError("UpdateContact::" + e.Message);
             }
 
             return BadRequest(new Contact());
