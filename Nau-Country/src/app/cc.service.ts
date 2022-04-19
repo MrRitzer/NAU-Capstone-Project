@@ -46,7 +46,7 @@ export class CCService {
     lists.forEach((list, ii) => {
       urlEncoded += list + "%2B";
     });
-    urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("%2B"));
+    urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("%2C"));
 
     let url : string = this.baseUrl + "getmany?tLists=" + urlEncoded + "&limit=" + limit;
     let re = / /gi;
@@ -75,5 +75,25 @@ export class CCService {
     let url : string = this.baseUrl + "updatecontact";
 
     return this.http.put(url, id);
+  }
+
+  createList(list: ContactList){
+    let url: string = this.baseUrl + "createlist";
+
+    return this.http.post(url, list);
+  }
+
+  updateList(list: ContactList){
+    let url: string = this.baseUrl + "updatelist";
+
+    return this.http.put(url, list);
+  }
+
+  deleteList(list: ContactList){
+    let id: string = list.list_id;
+
+    let url: string = this.baseUrl + "deletelist"+ "?listId=" + id;
+    return this.http.delete(url);
+
   }
 }
