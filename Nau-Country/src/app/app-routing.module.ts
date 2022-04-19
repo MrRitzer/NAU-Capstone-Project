@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: "lists", component: InputFormAddRemoveListComponent },
   { path: "opt", component: InputFormOptInOutComponent },
   { path: "importfile", component: InputFormImportFileComponent },
+  { path: "callback", component : CallbackComponent },
   { path: '', redirectTo: '/contacts', pathMatch: 'full' },
 ];
 

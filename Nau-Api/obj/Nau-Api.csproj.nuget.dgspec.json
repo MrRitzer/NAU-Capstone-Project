@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {}
+    "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {}
   },
   "projects": {
-    "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {
+    "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+        "projectUniqueName": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
         "projectName": "Nau-Api",
-        "projectPath": "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+        "projectPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
         "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
+        "outputPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
