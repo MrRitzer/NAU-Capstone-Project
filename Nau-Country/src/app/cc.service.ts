@@ -46,7 +46,7 @@ export class CCService {
     lists.forEach((list, ii) => {
       urlEncoded += list + "%2B";
     });
-    urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("%2B"));
+    urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("%2C"));
 
     let url : string = this.baseUrl + "getmany?tLists=" + urlEncoded + "&limit=" + limit;
     let re = / /gi;

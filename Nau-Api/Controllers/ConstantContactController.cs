@@ -249,7 +249,7 @@ namespace Nau_Api.Controllers
         //Takes in string of list 
         [HttpGet]
         [Route("getmany")]
-        public async Task<IActionResult> GetMany([FromQuery] string tLists, [FromQuery] int limit)
+        public async Task<IActionResult> GetMany([FromQuery] string lists, [FromQuery] int limit)
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
@@ -257,76 +257,33 @@ namespace Nau_Api.Controllers
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
             }
 
-            string[] listNames = tLists.Split("+");
+            string[] listIds = lists.Split(",");
 
-            //First get all lists associated with the account.
-            GetListsResponse listsResponse = null;
+            //Now get all contacts associated with those lists
             try
             {
                 using (var httpClient = new HttpClient())
                 {
-                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://api.cc.email/v3/contact_lists?include_count=true"))
+                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), baseUrl + "contacts"
+                            + "?lists=" + string.Join(",", listIds)
+                            + "&limit=" + limit))
                     {
                         request.Headers.TryAddWithoutValidation("Accept", "application/json");
                         request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
-                        request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
+                        //request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
 
-                        var response = await httpClient.SendAsync(request);
+                        var response = await httpClient.SendAsync(request);   
                         string json = await response.Content.ReadAsStringAsync();
 
-                        //This is an object containing all contact lists associated with the account
-                        listsResponse = JsonConvert.DeserializeObject<GetListsResponse>(json);
+                        var contacts = JsonConvert.DeserializeObject<GetManyResponse>(json);
+
+                        return Ok(contacts); //return the list of contacts
                     }
                 }
             }
             catch (Exception e)
             {
-                //calebx - I don't feel like writing error handling. I'll just log it and return sadness :)
                 _logger.LogError("GetMany::" + e.Message);
-                return new StatusCodeResult((int)HttpStatusCode.BadRequest);
-            }
-
-            //Parse the lists we get back to choose the ones requested
-            List<string> listIds = new List<string>();
-            if (listsResponse != null)
-            {
-                foreach (ContactList cl in listsResponse.lists)
-                {
-                    //if the client request contains this list's name, add the list id to listIds for a query
-                    if (listNames.Contains(cl.name))
-                    {
-                        listIds.Add(cl.list_id);
-                    }
-                }
-
-                //Now get all contacts associated with those lists
-                try
-                {
-                    using (var httpClient = new HttpClient())
-                    {
-                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), baseUrl + "contacts"
-                                + "?lists=" + string.Join(",", listIds)
-                                + "&limit=" + limit))
-                        {
-                            request.Headers.TryAddWithoutValidation("Accept", "application/json");
-                            request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
-                            //request.Headers.TryAddWithoutValidation("Access-Control-Allow-Origin", "*");
-
-                            var response = await httpClient.SendAsync(request);
-                            
-                            string json = await response.Content.ReadAsStringAsync();
-
-                            
-                            var contacts = JsonConvert.DeserializeObject<GetManyResponse>(json);
-
-                            return Ok(contacts); //return the list of contacts
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    _logger.LogError("GetMany::" + e.Message);
-                }
             }
 
             //If we're here something went wrong so return an empty list.
