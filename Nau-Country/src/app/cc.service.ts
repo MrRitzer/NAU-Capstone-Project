@@ -80,7 +80,7 @@ export class CCService {
   createList(list: ContactList){
     let url: string = this.baseUrl + "createlist";
 
-    return this.http.put(url, list);
+    return this.http.post(url, list);
   }
 
   updateList(list: ContactList){
