@@ -7,31 +7,28 @@
         <p>
             <strong>Email</strong>
             <br>
-            <input type="text" name="new-email">
+            <input type="text" [(ngModel)]="newEmail.address">
         </p>
         <p>
             <strong>First Name</strong>
             <br>
-            <input type="text" name="new-fname">
+            <input type="text" [(ngModel)]="newContact.first_name">
         </p>
         <p>
             <strong>Last Name</strong>
             <br>
-            <input type="text" name="new-lname">
+            <input type="text" [(ngModel)]="newContact.last_name">
         </p>
-        <button type="button" class="btn btn-primary" name="add-contact" (click)="onAddClick()">
+        <button type="button" class="btn btn-primary" name="add-contact" [disabled]="isDisabledAdd()" (click)="onAddClick()">
           Add
         </button>
     </div>
     <div id="list-add" class="col-md">
-        <h5>
-            <strong>Contact Lists</strong>
-        </h5>
+        <div class="row">
+            <br><br>
+        </div>
         <br><br>
-        <select class="form-select" name="contact-lists" id="contact-lists" multiple size="8">
-        <option *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}
-        </option>
-      </select>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="listOfContactLists" [(ngModel)]="selectedItemsAdd"></ng-multiselect-dropdown>
     </div>
     <div id="remove-contact" class="col-sm-3">
         <h5>
@@ -41,20 +38,17 @@
         <p>
             <strong>Email</strong>
             <br>
-            <input type="text" name="new-email">
+            <input type="text" [(ngModel)]="oldContact.address">
         </p>
-        <button type="button" class="btn btn-primary" name="remove-contact" (click)="onRemoveClick()">
+        <button type="button" class="btn btn-primary" name="remove-contact" [disabled]="isDisabledRemove()" (click)="onRemoveClick()">
           Remove
         </button>
     </div>
     <div id="list-remove" class="col-md">
-        <h5>
-            <strong>Contact Lists</strong>
-        </h5>
+        <div class="row">
+            <br><br>
+        </div>
         <br><br>
-        <select class="form-select" name="contact-lists" id="contact-lists" multiple size="8">
-    <option *ngFor="let cl of listOfContactLists; let i = index" (click)="onListSelect(i)" value="{{i}}">{{cl.name}}
-    </option>
-  </select>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="listOfContactLists" [(ngModel)]="selectedItemsRemove"></ng-multiselect-dropdown>
     </div>
 </div>
