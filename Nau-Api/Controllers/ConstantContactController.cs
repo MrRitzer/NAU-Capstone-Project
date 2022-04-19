@@ -145,7 +145,7 @@ namespace Nau_Api.Controllers
 
             try
             {
-                string url = baseUrl + "contacts/" + list.list_id;
+                string url = baseUrl + "contact_lists/" + list.list_id;
                 WebRequest request = WebRequest.Create(url);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
@@ -169,7 +169,7 @@ namespace Nau_Api.Controllers
                     {
                         //Return the returned contact
                         var json = ReadResponse(webResponse);
-                        Contact response = JsonConvert.DeserializeObject<Contact>(json);
+                        ContactList response = JsonConvert.DeserializeObject<ContactList>(json);
 
                         return Ok(response);
                     }
@@ -194,6 +194,56 @@ namespace Nau_Api.Controllers
             }
 
             return BadRequest(new Contact());
+        }
+
+        [HttpDelete]
+        [Route("deletelist")]
+        public async Task<IActionResult> DeleteList([FromQuery] string listId)
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+            if (String.IsNullOrWhiteSpace(_config.Token))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
+            }
+
+            try
+            {
+                string url = baseUrl + "contact_lists/" + listId;
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "DELETE";
+                request.ContentType = "application/json";
+                request.Headers.Add("Authorization", "Bearer " + _config.Token);
+
+                using (HttpWebResponse webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    if (((int)webResponse.StatusCode) < 400)
+                    {
+                        return Ok("success");
+                    }
+                    else
+                    {
+                        _logger.LogError("DeleteList:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        string json = ReadResponse(webResponse);
+                        _logger.LogInformation("DeleteList:: Response: " + json);
+                    }
+                }
+            }
+            catch (WebException we)
+            {
+                HttpWebResponse response = (HttpWebResponse)we.Response;
+                if (((int)response.StatusCode) == 404)
+                {
+                    //Contact didn't exist. Unfortunately, 404 can mean a lot of things but they use it in this case to say not found. 
+                    //Calebx - I'm not sure how NAU wants to handle this, it would be nice to tell the user that the person they tried to delete didn't exist I guess. 
+                    return Ok();
+                }
+                string json = ReadResponse(response);
+                _logger.LogError("DeleteList::StatusCode: " + response.StatusCode + ", Description: " + response.StatusDescription);
+                _logger.LogError("DeleteList::Response: " + json);
+            }
+
+            return new StatusCodeResult((int)HttpStatusCode.BadRequest);
         }
 
         //Takes in string of list 
@@ -496,9 +546,9 @@ namespace Nau_Api.Controllers
                     }
                     else
                     {
-                        _logger.LogError("CreateContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
+                        _logger.LogError("DeleteContact:: response not ok. Status code: " + webResponse.StatusCode + ", Description: " + webResponse.StatusDescription);
                         string json = ReadResponse(webResponse);
-                        _logger.LogInformation("CreateContact:: Response: " + json);
+                        _logger.LogInformation("DeleteContact:: Response: " + json);
                     }
                 }
             }
