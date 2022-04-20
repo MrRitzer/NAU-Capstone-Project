@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 //import the children to inherit
-import { InputFormAddRemoveComponent } from '../input-form-add-remove/input-form-add-remove.component';
 import { Contact } from '../models/Contact';
 import { CCService } from '../cc.service';
 import { GetManyResponse } from '../models/GetManyResponse';
@@ -70,7 +69,7 @@ export class InputFormComponent implements OnInit {
     let contact : Contact = new Contact();
     let email : EmailAddress = new EmailAddress();
 
-    email.address = "test5@gmail.com";
+    email.address = "test6@gmail.com";
     email.permission_to_send = "implicit";
     email.created_at = new Date("2016-03-03T15:53:04.000+00:00");
     email.updated_at = new Date("2016-03-03T15:56:29.000+00:00");

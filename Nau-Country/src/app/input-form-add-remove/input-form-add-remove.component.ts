@@ -8,8 +8,8 @@ import { StreetAddress } from '../models/StreetAddress';
 import { CCService } from '../cc.service'
 import { GetManyResponse } from '../models/GetManyResponse';
 import { GetListsResponse } from '../models/GetListsResponse';
-import { Observable } from 'rxjs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-input-form-add-remove',
@@ -18,36 +18,18 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class InputFormAddRemoveComponent implements OnInit {
 
-  closeResult: string = '';
   constructor(private ccService: CCService) {}
-  
-  selectedList : Array<Contact>;
-  selectedListName : string;
-  selectedContact : Contact;
-  isContactSelected : boolean = false;
-
-  //public _reload = true;
 
   dropdownSettings:IDropdownSettings = {};
-
-  selectedItemsAdd: Array<string>;
-  selectedItemsRemove: Array<string>;
-  listOfContactLists : ContactList[];
-  listCall : string[];
+  selectedItemsAddIds: Array<string>;
 
   // Create contacts for component
   newContact: Contact = new Contact;
   newEmail: EmailAddress = new EmailAddress;
   oldContact: EmailAddress = new EmailAddress;
 
-
-  // Create test contact lists
-  list1 : ContactList = new ContactList;
-  list2 : ContactList = new ContactList;
-  list3 : ContactList = new ContactList;
-  list4 : ContactList = new ContactList;
-  list5 : ContactList = new ContactList;
-  response : Observable<GetListsResponse>;
+  // Get Lists
+  contactLists : GetListsResponse;
 
   ngOnInit(): void {
     //Declare initial values
@@ -56,25 +38,9 @@ export class InputFormAddRemoveComponent implements OnInit {
     this.newContact.last_name = '';
 
     //API CALL TO GRAB LIST OF CONTACT LISTS
-    this.response = this.ccService.getContactLists();
-
-    //add them to the dummy lists
-    this.list1.name = "testlist1";
-    this.list2.name = "testlist2";
-    this.list3.name = "testlist3";
-    this.list4.name = "testlist4";
-    this.list5.name = "testlist5";
-    this.list1.list_id = "testlist1";
-    this.list2.list_id = "testlist2";
-    this.list3.list_id = "testlist3";
-    this.list4.list_id = "testlist4";
-    this.list5.list_id = "testlist5";
-
-    //add the dummy lists to the dummy list of lists
-    this.listOfContactLists = [this.list1, this.list2,this.list3,this.list4,this.list5];
-
-    this.selectedItemsAdd = [];
-    this.selectedItemsRemove = [];
+    this.GetLists();
+    
+    this.selectedItemsAddIds = [];
     
     this.dropdownSettings = {
       singleSelection: false,
@@ -86,25 +52,29 @@ export class InputFormAddRemoveComponent implements OnInit {
     };
   }
 
-  onListSelect(index : number){
-    //change the name of the selected list
-    this.selectedListName = this.listOfContactLists[index].name
+  GetLists() : void {
+    this.contactLists = new GetListsResponse();
 
-    //API CALL TO GET LIST OF CONTACTS
-    //this.listCall = [this.listOfContactLists[index].list_id]
-    this.selectedList = this.listOfContactLists[index].contacts
-    //this.ccService.getManyContacts(this.listCall, 100).subscribe((response : GetManyResponse) => {this.selectedList = response.contacts;});
+    const observer = {
+      next: (response : GetListsResponse) => {
+        this.contactLists = response;
+      },
+      error: (e: string) => {
+        console.error("Request failed with error: " + e);
+      }
+    }
 
-    console.log(this.selectedListName);
+    this.ccService.getContactLists()
+      .subscribe(observer);
   }
 
   onAddClick() {
     this.newEmail.permission_to_send = "implicit";
-    this.newEmail.created_at = new Date("2000-01-01T00:00:00.000+00:00");
-    this.newEmail.updated_at = new Date('"2000-01-01T00:00:00.000+00:00"');
+    this.newEmail.created_at = new Date();
+    this.newEmail.updated_at = new Date();
     this.newEmail.opt_in_source = "Contact";
-    this.newEmail.opt_in_date = new Date("2000-01-01T00:00:00.000+00:00");
-    this.newEmail.opt_out_reason = "This is a test";
+    this.newEmail.opt_in_date = new Date();
+    this.newEmail.opt_out_reason = "New contact";
     this.newEmail.confirm_status = "confirmed";
 
     this.newContact.email_address = this.newEmail;
@@ -119,7 +89,9 @@ export class InputFormAddRemoveComponent implements OnInit {
     this.newContact.phone_numbers = new Array<PhoneNumber>();
     this.newContact.street_addresses = new Array<StreetAddress>();
     this.newContact.list_memberships = new Array<string>();
-    this.newContact.list_memberships.push("2e40d64e-9435-11ec-b993-fa163ee7c533")
+    this.selectedItemsAddIds.forEach(id => {
+      this.newContact.list_memberships.push(id);
+    });
 
     let temp : Contact = new Contact();
     const observer = {
@@ -136,13 +108,28 @@ export class InputFormAddRemoveComponent implements OnInit {
   }
 
   onRemoveClick(){
+    let id: string = '';
+    let deleteStatus : string = "";
+    let temp: Observable<Contact> = this.ccService.getContact(this.oldContact.address);
+    temp.forEach(c => {
+      id = c.contact_id;
+    });
+    this.ccService.deleteContact(id).subscribe(() => deleteStatus = 'Delete Successful');
+  }
 
+  onItemSelectAdd(item: any) {
+    this.selectedItemsAddIds.push(item.list_id)
+  }
+
+  onItemDeSelectAdd(item: any) {
+    this.selectedItemsAddIds.forEach((value,index)=>{
+      if(value==item.list_id) this.selectedItemsAddIds.splice(index,1);
+    });
   }
 
   isDisabledAdd(): boolean {
     try {
-      console.log(this.selectedItemsAdd);
-      return !(this.newEmail.address != '' && this.newContact.first_name != '' && this.newContact.last_name != '' && this.selectedItemsAdd.length != 0);
+      return !(this.newEmail.address != '' && this.newContact.first_name != '' && this.newContact.last_name != '' && this.selectedItemsAddIds.length != 0);
     }
     catch {
       return true;
@@ -151,7 +138,7 @@ export class InputFormAddRemoveComponent implements OnInit {
 
   isDisabledRemove(): boolean {
     try {
-      return !(this.oldContact.address != '' && this.selectedItemsRemove.length != 0);
+      return !(this.oldContact.address != '');
     }
     catch {
       return true;

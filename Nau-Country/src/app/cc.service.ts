@@ -13,7 +13,7 @@ import { EmailAddress } from './models/EmailAddress';
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://192.168.0.89:45455/api/ConstantContact/";
+  baseUrl : string = "http://172.25.170.214:45455/api/ConstantContact/";
   // baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/"; Caleb Desktop
   constructor(private http: HttpClient) { }
 
