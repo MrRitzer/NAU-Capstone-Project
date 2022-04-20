@@ -90,11 +90,8 @@ export class CCService {
     return this.http.put(url, list);
   }
 
-  deleteList(list: ContactList){
-    let id: string = list.list_id;
-
+  deleteList(id: string){
     let url: string = this.baseUrl + "deletelist"+ "?listId=" + id;
     return this.http.delete(url);
-
   }
 }

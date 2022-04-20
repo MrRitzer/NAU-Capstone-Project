@@ -7,9 +7,9 @@
         <p>
             <strong>New List Name</strong>
             <br>
-            <input type="text" name="new-lname">
+            <input type="text" [(ngModel)]="newList">
         </p>
-        <button type="button" class="btn btn-primary" name="add-contact" (click)="onAddCLick()">
+        <button type="button" class="btn btn-primary" name="add-contact" [disabled]="isDisabledAdd()" (click)="onAddCLick()">
           Add
         </button>
     </div>
@@ -18,8 +18,9 @@
             <strong>Remove Lists</strong>
         </h5>
         <br><br>
-        <p>(Insert List Box Here)</p>
-        <button type="button" class="btn btn-primary" name="remove-contact" (click)="onRemoveClick()">
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onDropDownClose)="GetLists()" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"></ng-multiselect-dropdown>
+        <br>
+        <button type="button" class="btn btn-primary" name="remove-contact" [disabled]="isDisabledRemove()" (click)="onRemoveClick()">
           Remove
         </button>
     </div>

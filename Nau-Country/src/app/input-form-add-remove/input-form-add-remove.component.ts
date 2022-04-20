@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/Contact';
-import { ContactList } from '../models/ContactList';
 import { EmailAddress } from '../models/EmailAddress';
 import { CustomField } from '../models/CustomField';
 import { PhoneNumber } from '../models/PhoneNumber';
@@ -39,7 +38,7 @@ export class InputFormAddRemoveComponent implements OnInit {
 
     //API CALL TO GRAB LIST OF CONTACT LISTS
     this.GetLists();
-    
+
     this.selectedItemsAddIds = [];
     
     this.dropdownSettings = {

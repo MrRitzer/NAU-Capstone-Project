@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { CallbackComponent } from './callback/callback.component';
 import { InputFormAddRemoveComponent } from './input-form-add-remove/input-form-add-remove.component';
 import { InputFormAddRemoveListComponent } from './input-form-add-remove-list/input-form-add-remove-list.component';
@@ -19,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
