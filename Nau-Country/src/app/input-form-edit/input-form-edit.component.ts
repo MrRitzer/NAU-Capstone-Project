@@ -78,6 +78,7 @@ export class InputFormEditComponent implements OnInit {
       }
     }
 
+    console.log(lists);
     this.ccService.getManyContacts(lists, 20)
       .subscribe(observer);
   }
