@@ -19,7 +19,8 @@ export class InputFormEditComponent implements OnInit {
 
   constructor(private ccService: CCService) {}
 
-  dropdownSettings:IDropdownSettings = {};
+  dropdownSettingsList:IDropdownSettings = {};
+  dropdownSettingsContact:IDropdownSettings = {};
   selectedList: string;
   selectedContact: string;
 
@@ -37,10 +38,18 @@ export class InputFormEditComponent implements OnInit {
     this.selectedList = '';
     this.selectedContact = '';
     
-    this.dropdownSettings = {
+    this.dropdownSettingsList = {
       singleSelection: true,
       textField: 'name',
       idField: 'list_id',
+      enableCheckAll: false,
+      itemsShowLimit: 3,
+      allowSearchFilter: false,
+    };
+    this.dropdownSettingsContact = {
+      singleSelection: true,
+      textField: 'name',
+      idField: 'email_address.address',
       enableCheckAll: false,
       itemsShowLimit: 3,
       allowSearchFilter: false,
@@ -84,9 +93,11 @@ export class InputFormEditComponent implements OnInit {
   }
 
   onUpdateClick() {
-    
+    this.ccService.updateContact(this.contact).subscribe(data => {
+      this.selectedContact = '';
+      this.contact = new Contact;
+    });
   }
-
 
   onItemSelectList(item: any) {
     this.selectedList = item.list_id;
@@ -99,11 +110,15 @@ export class InputFormEditComponent implements OnInit {
   }
 
   onItemSelectContact(item: any) {
-    this.selectedContact = item.list_id;
+    this.selectedContact = item.email_address.address;
+    this.ccService.getContact(this.selectedContact).subscribe(data => {
+      this.contact = data;
+    });
   }
 
   onItemDeSelectContact() {
     this.selectedContact = '';
+    this.contact = new Contact;
   }
 
   isDisabled(): boolean {
