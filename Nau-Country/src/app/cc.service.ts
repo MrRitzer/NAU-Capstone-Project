@@ -13,7 +13,7 @@ import { EmailAddress } from './models/EmailAddress';
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://10.134.227.16:45455/api/ConstantContact/";
+  baseUrl : string = "http://192.168.0.89:45455/api/ConstantContact/";
   // baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/"; Caleb Desktop
   constructor(private http: HttpClient) { }
 
@@ -48,7 +48,7 @@ export class CCService {
       urlEncoded += list + "%2B";
     });
     urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("%2C"));
-    
+
     let url : string = this.baseUrl + "getmany?tLists=" + urlEncoded + "&limit=" + limit;
     let re = / /gi;
     url = url.replace(re, "%20");
