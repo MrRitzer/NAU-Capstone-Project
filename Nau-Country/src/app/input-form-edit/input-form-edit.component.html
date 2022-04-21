@@ -7,17 +7,17 @@
         <p>
             <strong>Email</strong>
             <br>
-            <input type="text" [(ngModel)]="email.address">
+            <input type="text" [disabled]="isDisabled()" [(ngModel)]="contact.email_address.address">
         </p>
         <p>
             <strong>First Name</strong>
             <br>
-            <input type="text" [(ngModel)]="contact.first_name">
+            <input type="text" [disabled]="isDisabled()" [(ngModel)]="contact.first_name">
         </p>
         <p>
             <strong>Last Name</strong>
             <br>
-            <input type="text" [(ngModel)]="contact.last_name">
+            <input type="text" [disabled]="isDisabled()" [(ngModel)]="contact.last_name">
         </p>
         <button type="button" class="btn btn-primary" name="add-contact" [disabled]="isDisabled()" (click)="onUpdateClick()">
           Update

@@ -22,7 +22,6 @@ export class InputFormEditComponent implements OnInit {
 
   // Create contacts for component
   contact: Contact = new Contact;
-  email: EmailAddress = new EmailAddress;
 
   // Get Lists
   contactLists : GetListsResponse;
@@ -30,6 +29,7 @@ export class InputFormEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetLists();
+    this.contact.email_address = new EmailAddress;
     this.contacts = new GetManyResponse();
     this.selectedList = '';
     this.selectedContact = '';
@@ -44,8 +44,8 @@ export class InputFormEditComponent implements OnInit {
     };
     this.dropdownSettingsContact = {
       singleSelection: true,
-      textField: 'name',
-      idField: 'email_address.address',
+      textField: 'first_name',
+      idField: 'email_address',
       enableCheckAll: false,
       itemsShowLimit: 3,
       allowSearchFilter: false,
@@ -71,27 +71,25 @@ export class InputFormEditComponent implements OnInit {
   GetContacts() : void {
     let lists = new Array<string>();
     lists.push(this.selectedList);
-    this.contacts = new GetManyResponse();
-
     const observer = {
       next: (response : GetManyResponse) => {
         this.contacts = response;
-        console.log(this.contacts.contacts_count);
       },
       error: (e: string) => {
         console.error("Request failed with error: " + e);
       }
     }
-
-    console.log(lists);
     this.ccService.getManyContacts(lists, 20)
-      .subscribe(observer);
+      .subscribe(observer => {
+        this.contacts = observer;
+      });
   }
 
   onUpdateClick() {
     this.ccService.updateContact(this.contact).subscribe(data => {
       this.selectedContact = '';
       this.contact = new Contact;
+      this.contact.email_address = new EmailAddress;
     });
   }
 
@@ -115,11 +113,12 @@ export class InputFormEditComponent implements OnInit {
   onItemDeSelectContact() {
     this.selectedContact = '';
     this.contact = new Contact;
+    this.contact.email_address = new EmailAddress;
   }
 
   isDisabled(): boolean {
     try {
-      return !(this.contact.email_address.address != '' && this.contact.first_name != '' && this.contact.last_name != '' && this.selectedList != '');
+      return !(this.selectedList != '' && this.selectedContact != '');
     }
     catch {
       return true;
