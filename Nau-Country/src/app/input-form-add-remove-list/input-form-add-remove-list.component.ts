@@ -69,16 +69,13 @@ export class InputFormAddRemoveListComponent implements OnInit {
     list.membership_count = 0;
     list.name = this.newList;
     list.updated_at = new Date();
-    // list.list_id = 'newListWoo';
-    let createStatus: string = "";
     this.ccService.createList(list).subscribe(data => console.log(data.list_id));
     this.newList = '';
   }
 
   onRemoveClick(){
     this.selectedIds.forEach(id => {
-      let deleteStatus : string = "";
-      this.ccService.deleteList(id).subscribe(() => deleteStatus = 'Delete Successful');
+      this.ccService.deleteList(id).subscribe(data => console.log(data));
     });
     this.selectedIds = [];
     this.msSelectedIds = [];
