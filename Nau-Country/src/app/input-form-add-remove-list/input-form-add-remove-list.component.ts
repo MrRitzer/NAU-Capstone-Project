@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/Contact';
 import { ContactList } from '../models/ContactList';
-import { EmailAddress } from '../models/EmailAddress';
-import { CustomField } from '../models/CustomField';
-import { PhoneNumber } from '../models/PhoneNumber';
-import { StreetAddress } from '../models/StreetAddress';
 import { CCService } from '../cc.service'
-import { GetManyResponse } from '../models/GetManyResponse';
 import { GetListsResponse } from '../models/GetListsResponse';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 

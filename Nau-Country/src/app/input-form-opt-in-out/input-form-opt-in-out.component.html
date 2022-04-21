@@ -7,9 +7,9 @@
         <p>
             <strong>User Email</strong>
             <br>
-            <input type="text" name="new-email">
+            <input type="text" [(ngModel)]="userOptIn">
         </p>
-        <button type="button" class="btn btn-primary" name="add-contact" (click)="onOptInClick()">
+        <button type="button" class="btn btn-primary" name="add-contact" [disabled]="isDisabledAdd()" (click)="onOptInClick()">
           Add
         </button>
     </div>
@@ -18,7 +18,7 @@
             <strong>Contact Lists</strong>
         </h5>
         <br><br>
-        <p>(Insert List Box Here)</p>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelectAdd($event)" (onDeSelect)="onItemDeSelectAdd($event)"></ng-multiselect-dropdown>
     </div>
     <div id="remove-contact" class="col-sm-3">
         <h5>
@@ -28,9 +28,9 @@
         <p>
             <strong>User Email</strong>
             <br>
-            <input type="text" name="new-email">
+            <input type="text" [(ngModel)]="userOptOut">
         </p>
-        <button type="button" class="btn btn-primary" name="remove-contact" (click)="onOptOutClick()">
+        <button type="button" class="btn btn-primary" name="remove-contact" [disabled]="isDisabledRemove()" (click)="onOptOutClick()">
           Remove
         </button>
     </div>
@@ -39,6 +39,6 @@
             <strong>Contact Lists</strong>
         </h5>
         <br><br>
-        <p>(Insert List Box Here)</p>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelectRemove($event)" (onDeSelect)="onItemDeSelectRemove($event)"></ng-multiselect-dropdown>
     </div>
 </div>
