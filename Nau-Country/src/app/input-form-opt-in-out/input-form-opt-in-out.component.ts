@@ -4,6 +4,7 @@ import { ContactList } from '../models/ContactList';
 import { CCService } from '../cc.service'
 import { GetListsResponse } from '../models/GetListsResponse';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-input-form-opt-in-out',
@@ -77,16 +78,25 @@ export class InputFormOptInOutComponent implements OnInit {
   }
 
   onOptInClick(){
-    // needs method to return a single contact list
-
-    // this.selectedIdsAdd.forEach(list => {
-    //   let temp: ContactList = this.ccService.getContactLists()
-    //   this.ccService.updateList()
-    // });
+    this.selectedIdsAdd.forEach(list => {
+      let temp: Observable<Contact> = this.ccService.getContact(this.userOptIn);
+      temp.forEach(c => {
+        c.list_memberships.push(list);
+        this.ccService.updateContact(c);
+      });
+    });
   }
 
   onOptOutClick(){
-    //needs method to return a single contact list
+    this.selectedIdsRemove.forEach(list => {
+      let temp: Observable<Contact> = this.ccService.getContact(this.userOptOut);
+      temp.forEach(c => {
+        c.list_memberships.forEach((value,index) => {
+          if(value==list) this.selectedIdsRemove.splice(index,1);
+        });
+        this.ccService.updateContact(c);
+      });
+    });
   }
 
   isDisabledAdd() {
