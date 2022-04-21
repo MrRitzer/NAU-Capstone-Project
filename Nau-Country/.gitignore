@@ -3,6 +3,8 @@
 # API Stuff
 ../Nau-Api/obj/Debug
 ../Nau-Api/bin/Debug
+../Nau-Api/obj/Release
+../Nau-Api/bin/Relase
 
 # Compiled output
 /dist
