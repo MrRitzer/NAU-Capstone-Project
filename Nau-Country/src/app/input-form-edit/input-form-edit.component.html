@@ -28,13 +28,13 @@
             <br><br><br>
         </div>
         <br><br>
-        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelectList($event)" (onDeSelect)="onItemDeSelectList()"></ng-multiselect-dropdown>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettingsList" [data]="contactLists.lists" (onSelect)="onItemSelectList($event)" (onDeSelect)="onItemDeSelectList()"></ng-multiselect-dropdown>
     </div>
     <div id="list-of-contacts" class="col-sm-3">
         <div class="row">
             <br><br><br>
         </div>
         <br><br>
-        <ng-multiselect-dropdown [placeholder]="'Contacts'" [settings]="dropdownSettings" [data]="contacts.contacts" (onSelect)="onItemSelectContact($event)" (onDeSelect)="onItemDeSelectContact()"></ng-multiselect-dropdown>
+        <ng-multiselect-dropdown [placeholder]="'Contacts'" [settings]="dropdownSettingsContact" [data]="contacts.contacts" (onSelect)="onItemSelectContact($event)" (onDeSelect)="onItemDeSelectContact()"></ng-multiselect-dropdown>
     </div>
 </div>
