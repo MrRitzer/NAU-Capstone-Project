@@ -2,6 +2,7 @@
 
 # API Stuff
 ../Nau-Api/obj/Debug
+../Nau-Api/bin/Debug
 
 # Compiled output
 /dist
