@@ -15,6 +15,7 @@ export class InputFormAddRemoveListComponent implements OnInit {
   dropdownSettings:IDropdownSettings = {};
   contactLists: GetListsResponse;
   selectedIds: Array<string>;
+  msSelectedIds: Array<string>;
   newList: string;
   
   constructor(private ccService: CCService) {}
@@ -22,6 +23,7 @@ export class InputFormAddRemoveListComponent implements OnInit {
   ngOnInit(): void {
     this.GetLists();
     this.selectedIds = [];
+    this.msSelectedIds = [];
     this.newList = '';
 
     this.dropdownSettings = {
@@ -62,15 +64,15 @@ export class InputFormAddRemoveListComponent implements OnInit {
 
   onAddCLick(){
     let list: ContactList = new ContactList();
-    list.contacts = new Array<Contact>();
-    list.created_at = new Date().toDateString();
+    list.created_at = new Date();
     list.description = "new list";
-    list.membership_count = new Uint8Array();
+    list.membership_count = 0;
     list.name = this.newList;
-    list.updated_at = new Date().toDateString();
+    list.updated_at = new Date();
     // list.list_id = 'newListWoo';
     let createStatus: string = "";
-    this.ccService.createList(list).subscribe(() => createStatus = 'Create Successful');
+    this.ccService.createList(list).subscribe(data => console.log(data.list_id));
+    this.newList = '';
   }
 
   onRemoveClick(){
@@ -78,6 +80,8 @@ export class InputFormAddRemoveListComponent implements OnInit {
       let deleteStatus : string = "";
       this.ccService.deleteList(id).subscribe(() => deleteStatus = 'Delete Successful');
     });
+    this.selectedIds = [];
+    this.msSelectedIds = [];
   }
 
   isDisabledAdd() {

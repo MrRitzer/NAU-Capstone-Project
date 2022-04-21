@@ -43,7 +43,7 @@ export class CallbackComponent implements OnInit {
           .subscribe(response => alert(response));
       }
 
-      this.location.replaceState("/");
+      this.location.replaceState("/contacts");
     }
     catch (e)
     {

@@ -293,7 +293,7 @@ namespace Nau_Api.Controllers
         [HttpGet]
         [Route("getcontact")]
         public async Task<IActionResult> GetContact([FromQuery] string email)
-        {
+            {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             if (String.IsNullOrWhiteSpace(_config.Token))
             {

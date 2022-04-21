@@ -13,7 +13,7 @@ import { EmailAddress } from './models/EmailAddress';
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://172.25.170.214:45455/api/ConstantContact/";
+  baseUrl : string = "http://10.134.227.16:45455/api/ConstantContact/";
   // baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/"; Caleb Desktop
   constructor(private http: HttpClient) { }
 
@@ -71,17 +71,18 @@ export class CCService {
 
   }
 
-  updateContact(contact: Contact){
-    let id = contact.contact_id;
+   updateContact(contact: Contact) : Observable<Contact>{
     let url : string = this.baseUrl + "updatecontact";
 
-    return this.http.put(url, id);
+    return this.http.put<Contact>(url, contact);
   }
 
-  createList(list: ContactList){
+  createList(list: ContactList) : Observable<ContactList> {
     let url: string = this.baseUrl + "createlist";
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
 
-    return this.http.post(url, list);
+    return this.http.post<ContactList>(url, list, { 'headers' : headers });
   }
 
   updateList(list: ContactList){

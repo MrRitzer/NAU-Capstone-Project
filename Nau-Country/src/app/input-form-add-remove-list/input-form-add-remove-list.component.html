@@ -1,5 +1,5 @@
 <div id="main-content" class="row">
-    <div id="add-contact" class="col-md-6">
+    <div id="add-contact" class="col-md-3">
         <h5>
             <strong>Add List</strong>
         </h5>
@@ -13,12 +13,12 @@
           Add
         </button>
     </div>
-    <div id="remove-contact" class="col-md-6">
+    <div id="remove-contact" class="col-md">
         <h5>
             <strong>Remove Lists</strong>
         </h5>
         <br><br>
-        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onDropDownClose)="GetLists()" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"></ng-multiselect-dropdown>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onDropDownClose)="GetLists()" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" [(ngModel)]="msSelectedIds"></ng-multiselect-dropdown>
         <br>
         <button type="button" class="btn btn-primary" name="remove-contact" [disabled]="isDisabledRemove()" (click)="onRemoveClick()">
           Remove

@@ -1,14 +1,18 @@
 <div id="main-content" class="row">
-    <div id="add-contact" class="col-md-6">
+    <div id="add-contact" class="col-1">
         <h5>
             <strong>Add Contacts From File</strong>
         </h5>
         <br><br>
         <p>
-            <input type="file" name="new-lname">
+            <input type="file" class="form-control form-control-sm" [(ngModel)]="tempFile" (change)="fileInput($event)">
         </p>
-        <button type="button" class="btn btn-primary" name="add-contact" (click)="onAddClick()">
+        <button type="button" class="btn btn-primary" name="add-contact" [disabled]="isDisabled()" (click)="onAddClick()">
           Add Contacts
         </button>
+    </div>
+    <div id="add-list" class="col-sm-3">
+        <br><br><br><br>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onDropDownClose)="GetLists()" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" [(ngModel)]="msSelectedIds"></ng-multiselect-dropdown>
     </div>
 </div>

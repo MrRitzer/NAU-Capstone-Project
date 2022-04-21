@@ -102,18 +102,20 @@ export class InputFormAddRemoveComponent implements OnInit {
         console.error("Request failed with error: " + e);
       }
     }
-
     this.ccService.createContact(this.newContact).subscribe(observer);
+    this.newEmail.address = '';
+    this.newContact.first_name = '';
+    this.newContact.last_name = '';
   }
 
   onRemoveClick(){
     let id: string = '';
     let deleteStatus : string = "";
     let temp: Observable<Contact> = this.ccService.getContact(this.oldContact.address);
-    temp.forEach(c => {
-      id = c.contact_id;
-    });
-    this.ccService.deleteContact(id).subscribe(() => deleteStatus = 'Delete Successful');
+    temp.subscribe(data => {
+      this.ccService.deleteContact(data.contact_id).subscribe(() => deleteStatus = 'Delete Successful');
+      this.oldContact.address = '';
+    })
   }
 
   onItemSelectAdd(item: any) {

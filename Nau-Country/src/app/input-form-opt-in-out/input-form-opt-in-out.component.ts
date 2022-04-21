@@ -15,8 +15,8 @@ export class InputFormOptInOutComponent implements OnInit {
 
   dropdownSettings:IDropdownSettings = {};
   contactLists: GetListsResponse;
-  selectedIdsAdd: Array<string>;
-  selectedIdsRemove: Array<string>;
+  selectedIds: Array<string>;
+  msSelectedIds: Array<string>;
   userOptIn: string;
   userOptOut: string;
 
@@ -26,8 +26,8 @@ export class InputFormOptInOutComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetLists();
-    this.selectedIdsAdd = [];
-    this.selectedIdsRemove = [];
+    this.selectedIds = [];
+    this.msSelectedIds = [];
     this.userOptIn = '';
     this.userOptOut = '';
 
@@ -57,54 +57,61 @@ export class InputFormOptInOutComponent implements OnInit {
       .subscribe(observer);
   }
 
-  onItemSelectAdd(item: any) {
-    this.selectedIdsAdd.push(item.list_id)
+  onItemSelect(item: any) {
+    this.selectedIds.push(item.list_id);
   }
 
-  onItemDeSelectAdd(item: any) {
-    this.selectedIdsAdd.forEach((value,index)=>{
-      if(value==item.list_id) this.selectedIdsAdd.splice(index,1);
-    });
-  }
-
-  onItemSelectRemove(item: any) {
-    this.selectedIdsRemove.push(item.list_id)
-  }
-
-  onItemDeSelectRemove(item: any) {
-    this.selectedIdsRemove.forEach((value,index)=>{
-      if(value==item.list_id) this.selectedIdsRemove.splice(index,1);
+  onItemDeSelect(item: any) {
+    this.selectedIds.forEach((value,index)=>{
+      if(value==item.list_id) this.selectedIds.splice(index,1);
     });
   }
 
   onOptInClick(){
-    this.selectedIdsAdd.forEach(list => {
-      let temp: Observable<Contact> = this.ccService.getContact(this.userOptIn);
-      temp.forEach(c => {
-        c.list_memberships.push(list);
-        this.ccService.updateContact(c);
+    let update : Contact;
+    this.ccService.getContact(this.userOptIn).subscribe(data => { 
+      update = data;
+      if (update.list_memberships == null) {
+        update.list_memberships = new Array<string>();
+      }
+      console.log(this.selectedIds);
+      this.selectedIds.forEach(list => {
+        update.list_memberships.push(list);
       });
+      this.ccService.updateContact(update).subscribe(data => { console.log(data.list_memberships)});
+      this.selectedIds = [];
     });
+
+    this.userOptIn = '';
+    this.msSelectedIds = [];
   }
 
   onOptOutClick(){
-    this.selectedIdsRemove.forEach(list => {
-      let temp: Observable<Contact> = this.ccService.getContact(this.userOptOut);
-      temp.forEach(c => {
-        c.list_memberships.forEach((value,index) => {
-          if(value==list) this.selectedIdsRemove.splice(index,1);
-        });
-        this.ccService.updateContact(c);
+    let update : Contact;
+    this.ccService.getContact(this.userOptOut).subscribe(data => { 
+      update = data;
+      if (update.list_memberships == null) {
+        update.list_memberships = new Array<string>();
+      }
+      this.selectedIds.forEach(list => {
+        data.list_memberships.forEach((value,index) => {
+          if(value==list) this.selectedIds.splice(index,1);
+        })
       });
+      this.ccService.updateContact(update).subscribe(data => { console.log(data.list_memberships)});
+      this.selectedIds = [];
     });
+
+    this.userOptOut = '';
+    this.msSelectedIds = [];
   }
 
   isDisabledAdd() {
-    return !(this.selectedIdsAdd.length != 0 && this.userOptIn != '')
+    return !(this.selectedIds.length != 0 && this.userOptIn != '')
   }
 
   isDisabledRemove() {
-    return !(this.selectedIdsRemove.length != 0 && this.userOptOut != '');
+    return !(this.selectedIds.length != 0 && this.userOptOut != '');
   }
 
 

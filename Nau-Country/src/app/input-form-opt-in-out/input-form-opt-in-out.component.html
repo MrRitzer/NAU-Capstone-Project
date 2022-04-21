@@ -14,13 +14,10 @@
         </button>
     </div>
     <div id="list-add" class="col-md">
-        <h5>
-            <strong>Contact Lists</strong>
-        </h5>
-        <br><br>
-        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelectAdd($event)" (onDeSelect)="onItemDeSelectAdd($event)"></ng-multiselect-dropdown>
+        <br><br><br><br>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" [(ngModel)]="msSelectedIds"></ng-multiselect-dropdown>
     </div>
-    <div id="remove-contact" class="col-sm-3">
+    <div id="remove-contact" class="col-sm">
         <h5>
             <strong>Opt Out</strong>
         </h5>
@@ -33,12 +30,5 @@
         <button type="button" class="btn btn-primary" name="remove-contact" [disabled]="isDisabledRemove()" (click)="onOptOutClick()">
           Remove
         </button>
-    </div>
-    <div id="list-remove" class="col-md">
-        <h5>
-            <strong>Contact Lists</strong>
-        </h5>
-        <br><br>
-        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelectRemove($event)" (onDeSelect)="onItemDeSelectRemove($event)"></ng-multiselect-dropdown>
     </div>
 </div>
