@@ -257,6 +257,10 @@ namespace Nau_Api.Controllers
                 return new StatusCodeResult((int)HttpStatusCode.Unauthorized);
             }
 
+            if (String.IsNullOrWhiteSpace(lists))
+            {
+                return new StatusCodeResult((int)HttpStatusCode.BadRequest);
+            }
             string[] listIds = lists.Split(",");
 
             //Now get all contacts associated with those lists
@@ -266,7 +270,8 @@ namespace Nau_Api.Controllers
                 {
                     using (var request = new HttpRequestMessage(new HttpMethod("GET"), baseUrl + "contacts"
                             + "?lists=" + string.Join(",", listIds)
-                            + "&limit=" + limit))
+                            + "&limit=" + limit
+                            + "&include_count=true"))
                     {
                         request.Headers.TryAddWithoutValidation("Accept", "application/json");
                         request.Headers.TryAddWithoutValidation("Authorization", "Bearer " + _config.Token);
