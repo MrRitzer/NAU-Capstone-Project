@@ -1,0 +1,40 @@
+<div id="main-content" class="row">
+    <div id="add-contact" class="col-sm-3">
+        <h5>
+            <strong>Edit Contact</strong>
+        </h5>
+        <br><br>
+        <p>
+            <strong>Email</strong>
+            <br>
+            <input type="text" [(ngModel)]="email.address">
+        </p>
+        <p>
+            <strong>First Name</strong>
+            <br>
+            <input type="text" [(ngModel)]="contact.first_name">
+        </p>
+        <p>
+            <strong>Last Name</strong>
+            <br>
+            <input type="text" [(ngModel)]="contact.last_name">
+        </p>
+        <button type="button" class="btn btn-primary" name="add-contact" [disabled]="isDisabled()" (click)="onUpdateClick()">
+          Update
+        </button>
+    </div>
+    <div id="list-of-lists" class="col-sm-3">
+        <div class="row">
+            <br><br><br>
+        </div>
+        <br><br>
+        <ng-multiselect-dropdown [placeholder]="'Contact Lists'" [settings]="dropdownSettings" [data]="contactLists.lists" (onSelect)="onItemSelectList($event)" (onDeSelect)="onItemDeSelectList()"></ng-multiselect-dropdown>
+    </div>
+    <div id="list-of-contacts" class="col-sm-3">
+        <div class="row">
+            <br><br><br>
+        </div>
+        <br><br>
+        <ng-multiselect-dropdown [placeholder]="'Contacts'" [settings]="dropdownSettings" [data]="contacts.contacts" (onSelect)="onItemSelectContact($event)" (onDeSelect)="onItemDeSelectContact()"></ng-multiselect-dropdown>
+    </div>
+</div>
