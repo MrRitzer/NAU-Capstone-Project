@@ -48,7 +48,7 @@ export class CCService {
       urlEncoded += list + "%2B";
     });
     urlEncoded = urlEncoded.substring(0, urlEncoded.lastIndexOf("%2C"));
-
+    
     let url : string = this.baseUrl + "getmany?tLists=" + urlEncoded + "&limit=" + limit;
     let re = / /gi;
     url = url.replace(re, "%20");

@@ -14,6 +14,7 @@ import { InputFormAddRemoveComponent } from './input-form-add-remove/input-form-
 import { InputFormAddRemoveListComponent } from './input-form-add-remove-list/input-form-add-remove-list.component';
 import { InputFormOptInOutComponent } from './input-form-opt-in-out/input-form-opt-in-out.component';
 import { InputFormImportFileComponent } from './input-form-import-file/input-form-import-file.component';
+import { InputFormEditComponent } from './input-form-edit/input-form-edit.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { InputFormImportFileComponent } from './input-form-import-file/input-for
     InputFormAddRemoveListComponent,
     InputFormOptInOutComponent,
     InputFormImportFileComponent,
+    InputFormEditComponent,
   ],
   imports: [
     NgbModule,

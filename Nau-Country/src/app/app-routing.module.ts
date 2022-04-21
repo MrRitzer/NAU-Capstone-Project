@@ -6,9 +6,11 @@ import { InputFormAddRemoveComponent } from './input-form-add-remove/input-form-
 import { InputFormAddRemoveListComponent } from './input-form-add-remove-list/input-form-add-remove-list.component';
 import { InputFormOptInOutComponent } from './input-form-opt-in-out/input-form-opt-in-out.component';
 import { InputFormImportFileComponent } from './input-form-import-file/input-form-import-file.component';
+import { InputFormEditComponent } from './input-form-edit/input-form-edit.component';
 
 const routes: Routes = [
   { path: "contacts", component: InputFormAddRemoveComponent },
+  { path: "edit", component: InputFormEditComponent },
   { path: "lists", component: InputFormAddRemoveListComponent },
   { path: "opt", component: InputFormOptInOutComponent },
   { path: "importfile", component: InputFormImportFileComponent },
