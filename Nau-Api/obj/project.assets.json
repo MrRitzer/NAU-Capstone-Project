@@ -245,19 +245,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\caleb\\.nuget\\packages\\": {}
+    "C:\\Users\\nmrit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+      "projectUniqueName": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
       "projectName": "Nau-Api",
-      "projectPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
-      "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-      "outputPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
+      "projectPath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+      "packagesPath": "C:\\Users\\nmrit\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nmrit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -313,5 +313,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

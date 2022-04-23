@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DropdownContact } from '../models/DropDownContact';
 import { Contact } from '../models/Contact';
 import { EmailAddress } from '../models/EmailAddress';
 import { CCService } from '../cc.service'
@@ -11,6 +12,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   templateUrl: './input-form-edit.component.html',
   styleUrls: ['./input-form-edit.component.css']
 })
+
 export class InputFormEditComponent implements OnInit {
 
   constructor(private ccService: CCService) {}
@@ -26,11 +28,13 @@ export class InputFormEditComponent implements OnInit {
   // Get Lists
   contactLists : GetListsResponse;
   contacts: GetManyResponse;
+  dropdownContacts: Array<DropdownContact>;
 
   ngOnInit(): void {
     this.GetLists();
     this.contact.email_address = new EmailAddress;
     this.contacts = new GetManyResponse();
+    this.dropdownContacts = [];
     this.selectedList = '';
     this.selectedContact = '';
     
@@ -39,15 +43,13 @@ export class InputFormEditComponent implements OnInit {
       textField: 'name',
       idField: 'list_id',
       enableCheckAll: false,
-      itemsShowLimit: 3,
       allowSearchFilter: false,
     };
     this.dropdownSettingsContact = {
       singleSelection: true,
-      textField: 'first_name',
+      textField: 'name',
       idField: 'email_address',
       enableCheckAll: false,
-      itemsShowLimit: 3,
       allowSearchFilter: false,
     };
   }
@@ -70,6 +72,7 @@ export class InputFormEditComponent implements OnInit {
 
   GetContacts() : void {
     let lists = new Array<string>();
+    let tempContact: DropdownContact = {name:'',email_address:''};
     lists.push(this.selectedList);
     const observer = {
       next: (response : GetManyResponse) => {
@@ -82,6 +85,12 @@ export class InputFormEditComponent implements OnInit {
     this.ccService.getManyContacts(lists, 20)
       .subscribe(observer => {
         this.contacts = observer;
+        this.dropdownContacts = [];
+        this.contacts.contacts.forEach(c => {
+          tempContact.name = c.first_name + " " + c.last_name;
+          tempContact.email_address = c.email_address.address;
+          this.dropdownContacts.push(tempContact);
+        });
       });
   }
 
@@ -102,10 +111,12 @@ export class InputFormEditComponent implements OnInit {
   onItemDeSelectList() {
     this.selectedList = '';
     this.contacts = new GetManyResponse();
+    this.dropdownContacts = [];
   }
 
   onItemSelectContact(item: any) {
-    this.selectedContact = item.email_address.address;
+    console.log(item);
+    this.selectedContact = item.email_address;
     this.ccService.getContact(this.selectedContact).subscribe(data => {
       this.contact = data;
     });

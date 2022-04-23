@@ -1,0 +1,10 @@
+/.vs/*
+/!docs/*
+
+# Build results
+Nau-Api/obj/
+Nau-Api/bin/
+
+# User-specific files
+*.sou
+*.user

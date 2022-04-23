@@ -7,7 +7,7 @@
         <p>
             <strong>Email</strong>
             <br>
-            <input type="text" [disabled]="isDisabled()" [(ngModel)]="contact.email_address.address">
+            <input type="text" [disabled]="true" [(ngModel)]="contact.email_address.address">
         </p>
         <p>
             <strong>First Name</strong>
@@ -35,6 +35,6 @@
             <br><br><br>
         </div>
         <br><br>
-        <ng-multiselect-dropdown [placeholder]="'Contacts'" [settings]="dropdownSettingsContact" [data]="contacts.contacts" (onSelect)="onItemSelectContact($event)" (onDeSelect)="onItemDeSelectContact()"></ng-multiselect-dropdown>
+        <ng-multiselect-dropdown [placeholder]="'Contacts'" [settings]="dropdownSettingsContact" [data]="dropdownContacts" (onSelect)="onItemSelectContact($event)" (onDeSelect)="onItemDeSelectContact()"></ng-multiselect-dropdown>
     </div>
 </div>
