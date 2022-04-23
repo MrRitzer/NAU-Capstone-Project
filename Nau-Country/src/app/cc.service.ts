@@ -13,8 +13,8 @@ import { EmailAddress } from './models/EmailAddress';
   providedIn: 'root'
 })
 export class CCService {
-  baseUrl : string = "http://192.168.0.89:45455/api/ConstantContact/";
-  // baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/"; //Caleb's Desktop
+  // baseUrl : string = "http://192.168.0.89:45455/api/ConstantContact/";
+  baseUrl : string = "http://192.168.112.1:45455/api/ConstantContact/"; //Caleb's Desktop
   constructor(private http: HttpClient) { }
 
   setAuthorization(code : string) {
@@ -73,6 +73,13 @@ export class CCService {
 
    updateContact(contact: Contact) : Observable<Contact>{
     let url : string = this.baseUrl + "updatecontact";
+    contact.update_source = "Account";
+    if (contact.birthday_day < 1) {
+      contact.birthday_day = 1;
+    }
+    if (contact.birthday_month < 1) {
+      contact.birthday_month = 1;
+    }
 
     return this.http.put<Contact>(url, contact);
   }
