@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "95NFqzwR69+LTL5YmoXTxnab2ALY/18abLlRaChIWYocJ3NbFIT08JOSoln8Sqv9n7cK3sS2xxwahdELB/cgrg==",
+  "dgSpecHash": "xmHaL4EJV5sVDPqXUOzj6alDBAqPexYz6uLzNdAAT49mnNIrWmTg3yhpYCfOZz3cctOWUJfO/tQscr8ZhQ2btg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\2022-Spring\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+  "projectFilePath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nmrit\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\nmrit\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
