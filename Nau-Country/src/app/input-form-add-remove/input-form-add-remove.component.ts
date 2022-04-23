@@ -109,12 +109,11 @@ export class InputFormAddRemoveComponent implements OnInit {
   }
 
   onRemoveClick(){
-    let id: string = '';
-    let deleteStatus : string = "";
-    let temp: Observable<Contact> = this.ccService.getContact(this.oldContact.address);
-    temp.subscribe(data => {
-      this.ccService.deleteContact(data.contact_id).subscribe(() => deleteStatus = 'Delete Successful');
+    this.ccService.getContact(this.oldContact.address)
+      .subscribe(data => {
+      this.ccService.deleteContact(data.contact_id).subscribe(data => console.log(data));
       this.oldContact.address = '';
+      this.selectedItemsAddIds = []
     })
   }
 

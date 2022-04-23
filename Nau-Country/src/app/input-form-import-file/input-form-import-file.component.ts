@@ -73,7 +73,7 @@ export class InputFormImportFileComponent implements OnInit {
       let csvData = reader.result?.toString();
       let contactsList = csvData!.split(/\r?\n/);
       contactsList.pop();
-      contactsList.forEach(contact => {
+      contactsList.forEach((contact, index) => {
         let contactInfo = contact.split(',');
         let newEmail: EmailAddress = new EmailAddress();
         newEmail.address = contactInfo[0];
@@ -103,18 +103,43 @@ export class InputFormImportFileComponent implements OnInit {
         this.selectedIds.forEach(id => {
           newContact.list_memberships.push(id);
         });
-    
-        let temp : Contact = new Contact();
-        const observer = {
-          next: (response : Contact) => {
-            temp = response;
-            console.log(temp.first_name + " " + temp.last_name);
-          },
-          error: (e: string) => {
-            console.error("Request failed with error: " + e);
+
+        //Check to see first if the contact exists
+        //if yes update the old contact with the new info, if no, use the new contact
+        this.ccService.getContact(newContact.email_address.address).subscribe(data => {
+          if (!(data.contact_id || data.contact_id === "")) {
+            this.ccService.createContact(newContact).subscribe(newData => { 
+              console.log("Created: " + newData.first_name + " " + newData.last_name);
+              if (index >= contactsList.length-1) {
+                this.selectedIds = [];
+              }
+            });
           }
-        }
-        this.ccService.createContact(newContact).subscribe(observer);
+          else {
+            //Calebx
+            //We don't want to overwrite fields the CSV doesn't account for so only 
+            //update the fields we actually look for in the csv file. 
+            data.email_address.address = newContact.email_address.address;
+            data.first_name = newContact.first_name;
+            data.last_name = newContact.last_name;
+            
+            //add the selected list ids to the contact
+            this.selectedIds.forEach(id => {
+              if (data.list_memberships.indexOf(id) < 0)
+              {
+                //data is not already part of this list
+                data.list_memberships.push(id);
+              }
+            });
+
+            this.ccService.updateContact(data).subscribe(updateData => { 
+              console.log("Updated: " + updateData.first_name + " " + updateData.last_name);
+              if (index >= contactsList.length-1) {
+                this.selectedIds = [];
+              }             
+            });
+          }
+        });
       });
     };
     reader.onerror = function () {
@@ -122,7 +147,6 @@ export class InputFormImportFileComponent implements OnInit {
     };
     this.tempFile = "";
     this.msSelectedIds = [];
-    this.selectedIds = [];
   }
 
   fileInput(event: any) {

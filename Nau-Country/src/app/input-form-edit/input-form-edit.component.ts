@@ -90,6 +90,7 @@ export class InputFormEditComponent implements OnInit {
       this.selectedContact = '';
       this.contact = new Contact;
       this.contact.email_address = new EmailAddress;
+      console.log(data.first_name + " " + data.last_name);
     });
   }
 

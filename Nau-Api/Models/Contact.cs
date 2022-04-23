@@ -7,7 +7,7 @@ namespace Nau_Api.Models
 {
     public class Contact
     {
-        public string contact_id { get; set; }
+        public string contact_id { get; set; } = null;
         public EmailAddress email_address { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }

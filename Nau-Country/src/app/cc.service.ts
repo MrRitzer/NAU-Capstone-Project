@@ -22,7 +22,7 @@ export class CCService {
     const body = new HttpParams()
       .set('_code', code);
 
-      return this.http.post(url,
+      return this.http.post<string>(url,
       body.toString(),
       {
         headers: new HttpHeaders()
@@ -36,7 +36,7 @@ export class CCService {
     return this.http.get<GetListsResponse>(url);
   }
 
-  getContact(email: string) {
+  getContact(email: string) : Observable<Contact> {
 
     let url : string = this.baseUrl + "getcontact" + "?email=" + email;
     return this.http.get<Contact>(url);
@@ -64,10 +64,10 @@ export class CCService {
     return this.http.post<Contact>(url, contact, { 'headers' : headers });
   }
 
-  deleteContact(id: string){
+  deleteContact(id: string) : Observable<string> {
     let url : string = this.baseUrl + "deletecontact" + "?contactId=" + id;
 
-    return this.http.delete(url);
+    return this.http.delete<string>(url);
 
   }
 
@@ -92,13 +92,13 @@ export class CCService {
     return this.http.post<ContactList>(url, list, { 'headers' : headers });
   }
 
-  updateList(list: ContactList){
+  updateList(list: ContactList) {
     let url: string = this.baseUrl + "updatelist";
 
     return this.http.put(url, list);
   }
 
-  deleteList(id: string){
+  deleteList(id: string) {
     let url: string = this.baseUrl + "deletelist"+ "?listId=" + id;
     return this.http.delete(url);
   }

@@ -68,17 +68,21 @@ export class InputFormOptInOutComponent implements OnInit {
   }
 
   onOptInClick(){
-    let update : Contact;
     this.ccService.getContact(this.userOptIn).subscribe(data => { 
-      update = data;
-      if (update.list_memberships == null) {
-        update.list_memberships = new Array<string>();
+      if (data.list_memberships == null) {
+        data.list_memberships = new Array<string>();
       }
-      console.log(this.selectedIds);
-      this.selectedIds.forEach(list => {
-        update.list_memberships.push(list);
+
+      //add all lists that the contact isn't already part of
+      this.selectedIds.forEach(id => {
+        if (data.list_memberships.indexOf(id) < 0)
+        {
+          //data is not already part of this list
+          data.list_memberships.push(id);
+        }
       });
-      this.ccService.updateContact(update).subscribe(data => { console.log(data.list_memberships)});
+
+      this.ccService.updateContact(data).subscribe(updatedData => { console.log(updatedData.list_memberships)});
       this.selectedIds = [];
     });
 
@@ -87,18 +91,20 @@ export class InputFormOptInOutComponent implements OnInit {
   }
 
   onOptOutClick(){
-    let update : Contact;
     this.ccService.getContact(this.userOptOut).subscribe(data => { 
-      update = data;
-      if (update.list_memberships == null) {
-        update.list_memberships = new Array<string>();
+      if (data.list_memberships == null) {
+        data.list_memberships = new Array<string>();
       }
+      //Remove any selected ids from contact
       this.selectedIds.forEach(list => {
         data.list_memberships.forEach((value,index) => {
-          if(value==list) this.selectedIds.splice(index,1);
-        })
+          if(value==list) {
+            data.list_memberships.splice(index,1);
+          }
+        });
       });
-      this.ccService.updateContact(update).subscribe(data => { console.log(data.list_memberships)});
+
+      this.ccService.updateContact(data).subscribe(updatedData => { console.log(updatedData.list_memberships)});
       this.selectedIds = [];
     });
 

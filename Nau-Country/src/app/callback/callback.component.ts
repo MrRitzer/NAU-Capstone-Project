@@ -39,8 +39,7 @@ export class CallbackComponent implements OnInit {
       else
       {
         //alert("in");
-        this.ccService.setAuthorization(this.code)
-          .subscribe(response => alert(response));
+        this.ccService.setAuthorization(this.code).subscribe(data => console.log(data));
       }
 
       this.location.replaceState("/contacts");
