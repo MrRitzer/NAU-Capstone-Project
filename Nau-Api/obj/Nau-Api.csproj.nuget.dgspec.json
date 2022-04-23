@@ -1,75 +1,75 @@
 {
-    "format": 1,
-    "restore": {
-        "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {}
-    },
-    "projects": {
-        "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {
-            "version": "1.0.0",
-            "restore": {
-                "projectUniqueName": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
-                "projectName": "Nau-Api",
-                "projectPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
-                "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-                "outputPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
-                "projectStyle": "PackageReference",
-                "configFilePaths": [
-                    "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-                    "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-                ],
-                "originalTargetFrameworks": [
-                    "net5.0"
-                ],
-                "sources": {
-                    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-                    "https://api.nuget.org/v3/index.json": {}
-                },
-                "frameworks": {
-                    "net5.0": {
-                        "targetAlias": "net5.0",
-                        "projectReferences": {}
-                    }
-                },
-                "warningProperties": {
-                    "warnAsError": [
-                        "NU1605"
-                    ]
-                }
-            },
-            "frameworks": {
-                "net5.0": {
-                    "targetAlias": "net5.0",
-                    "dependencies": {
-                        "Newtonsoft.Json": {
-                            "target": "Package",
-                            "version": "[13.0.1, )"
-                        },
-                        "Swashbuckle.AspNetCore": {
-                            "target": "Package",
-                            "version": "[6.2.3, )"
-                        }
-                    },
-                    "imports": [
-                        "net461",
-                        "net462",
-                        "net47",
-                        "net471",
-                        "net472",
-                        "net48"
-                    ],
-                    "assetTargetFallback": true,
-                    "warn": true,
-                    "frameworkReferences": {
-                        "Microsoft.AspNetCore.App": {
-                            "privateAssets": "none"
-                        },
-                        "Microsoft.NETCore.App": {
-                            "privateAssets": "all"
-                        }
-                    },
-                    "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
-                }
-            }
+  "format": 1,
+  "restore": {
+    "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+        "projectName": "Nau-Api",
+        "projectPath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+        "packagesPath": "C:\\Users\\nmrit\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\nmrit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
         }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
     }
+  }
 }

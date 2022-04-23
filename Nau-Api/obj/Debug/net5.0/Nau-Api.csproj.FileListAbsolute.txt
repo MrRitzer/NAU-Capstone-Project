@@ -122,3 +122,34 @@ C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\2022-Spring\CSCI 445\NAU-Capstone-P
 C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\2022-Spring\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\ref\Nau-Api.dll
 C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\2022-Spring\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.pdb
 C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\2022-Spring\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.genruntimeconfig.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\appsettings.json
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Properties\launchSettings.json
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.StaticWebAssets.xml
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.exe
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.deps.json
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.runtimeconfig.json
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.runtimeconfig.dev.json
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\ref\Nau-Api.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Nau-Api.pdb
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.AssemblyReference.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.AssemblyInfoInputs.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.AssemblyInfo.cs
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.CoreCompileInputs.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\scopedcss\bundle\Nau-Api.styles.css
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\staticwebassets\Nau-Api.StaticWebAssets.Manifest.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.RazorTargetAssemblyInfo.cache
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.csproj.CopyComplete
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\ref\Nau-Api.dll
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.pdb
+C:\Users\nmrit\Documents\NDSU\NDSU Undergrad\Spring 2022\CSCI 445\NAU-Capstone-Project\Nau-Api\obj\Debug\net5.0\Nau-Api.genruntimeconfig.cache
