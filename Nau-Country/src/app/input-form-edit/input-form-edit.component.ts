@@ -72,23 +72,18 @@ export class InputFormEditComponent implements OnInit {
 
   GetContacts() : void {
     let lists = new Array<string>();
-    let tempContact: DropdownContact = {name:'',email_address:''};
     lists.push(this.selectedList);
-    const observer = {
-      next: (response : GetManyResponse) => {
-        this.contacts = response;
-      },
-      error: (e: string) => {
-        console.error("Request failed with error: " + e);
-      }
-    }
+    console.log(lists);
     this.ccService.getManyContacts(lists, 20)
-      .subscribe(observer => {
-        this.contacts = observer;
+      .subscribe(data => {
+        this.contacts = data;
+        console.log(data);
         this.dropdownContacts = [];
         this.contacts.contacts.forEach(c => {
+          let tempContact: DropdownContact = {name:'',email_address:''};
           tempContact.name = c.first_name + " " + c.last_name;
           tempContact.email_address = c.email_address.address;
+          console.log(tempContact.name)
           this.dropdownContacts.push(tempContact);
         });
       });

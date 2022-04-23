@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {}
+    "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {
+    "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+        "projectUniqueName": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
         "projectName": "Nau-Api",
-        "projectPath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
-        "packagesPath": "C:\\Users\\nmrit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nmrit\\Documents\\NDSU\\NDSU Undergrad\\Spring 2022\\CSCI 445\\NAU-Capstone-Project\\Nau-Api\\obj\\",
+        "projectPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\Nau-Api.csproj",
+        "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
+        "outputPath": "D:\\Devlopment\\NAU\\NAU-Capstone-Project\\Nau-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nmrit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
